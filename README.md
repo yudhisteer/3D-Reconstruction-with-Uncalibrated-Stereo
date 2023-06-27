@@ -1,4 +1,4 @@
-# 3D-Reconstruction with Uncallibrated Stereo
+# 3D-Reconstruction with Uncalibrated Stereo
 
 ## Problem Statement
 
