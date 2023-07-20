@@ -7,10 +7,10 @@
 ## Plan of Action
 
 1. [Uncalibrated Stereo](#us)
-2. Epipolar Geometry
-3. Fundamental Matrix
-4. Correspondences
-5. Estimating Depth
+2. [Epipolar Geometry](#eg)
+3. [Fundamental Matrix]
+4. [Correspondences]
+5. [Estimating Depth]
 
 ------------------------------
 
@@ -41,8 +41,18 @@ correspondences.
 
 5. With the dense correspondence map, we can **triangulate** and find the 3D location of points in the scene, computing their **depth**.
 
+-------------------
+
+<a name="eg"></a>
 ## 2. Epipolar Geometry
 
 
 
+-------------------
+<a name="fm"></a>
+## 3. Fundamental Matrix
+
+
+
+--------------------
 ## References
