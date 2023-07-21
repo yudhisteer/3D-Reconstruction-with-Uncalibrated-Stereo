@@ -86,6 +86,47 @@ We re-write our epipolar constraint as vector then matrix form. Note that the 3x
 
 We have a second constraint such that we can relate the three-dimensional coordinates of a point P in the left camera to the three-dimensional coordinates of the same point in the right camera using ```t``` and ```R```.
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/30aea9df-bb1b-4282-932a-f7c77600951e"/>
+</div>
+
+Now if we substitute equation 2 into equation 1:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/1665e78e-57c6-4e1e-aa10-e60267b69303"/>
+</div>
+
+In the equation above the product of the translation matrix with the translation vector is zero:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e155290f-032d-4aa7-9efb-dd85c8247745"/>
+</div>
+
+Hence, we are left with the equation below:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9ea5660d-7c44-4fbf-88c0-366820bf6ee7"/>
+</div>
+
+The product is the translation matrix with the rotation matrix gives the ```Essential matrix```:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/4b242ccb-7a82-4ae5-afbf-6f7c586e4500"/>
+</div>
+
+Hence, plugging in our equation above:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a1fff7e8-df6e-43de-8d7e-2a67972d7e67"/>
+</div>
+
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e5d86db9-6238-4bf2-a429-592981be710e"/>
+</div>
+
+### 2.4 Essential Matrix
+
 
 
 
