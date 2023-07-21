@@ -60,10 +60,22 @@ The epipoles (![CodeCogsEqn (18)](https://github.com/yudhisteer/3D-Reconstructio
 
 
 ### 2.2 Epipolar Plane
+The epipolar plane of a scene point ```P``` is defined as the plane formed by the **camera origins** ![CodeCogsEqn (22)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/02f527bb-7a8d-41fd-a6c9-22c82a7c8f1c), **epipoles** ![CodeCogsEqn (21)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/50884222-f111-48d3-b57e-2e409495a1f3)
+, and the **scene point P**. Note that each point in the scene has a unique epipolar plane.
 
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/4475786f-a47f-4176-9f56-25e15962e21e" width="700" height="370"/>
 </div>
+
+### 2.3 Epipolar Constraint
+
+
+
+
+
+
+
+
 
 
 
