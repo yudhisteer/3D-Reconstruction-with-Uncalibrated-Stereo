@@ -111,14 +111,16 @@ Hence, we are left with the equation below:
 The product is the translation matrix with the rotation matrix gives the ```Essential matrix```:
 
 <div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a1fff7e8-df6e-43de-8d7e-2a67972d7e67"/>
+</div>
+
+<div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/4b242ccb-7a82-4ae5-afbf-6f7c586e4500"/>
 </div>
 
 Hence, plugging in our equation above:
 
-<div align="center">
-  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a1fff7e8-df6e-43de-8d7e-2a67972d7e67"/>
-</div>
+
 
 
 <div align="center">
