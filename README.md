@@ -120,9 +120,6 @@ The product is the translation matrix with the rotation matrix gives the ```Esse
 
 Hence, plugging in our equation above:
 
-
-
-
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e5d86db9-6238-4bf2-a429-592981be710e"/>
 </div>
@@ -130,9 +127,18 @@ Hence, plugging in our equation above:
 ### 2.4 Essential Matrix
 Note that it is possible to decompose our Essential Matrix into the translation and rotation matrix. Notice the translation matrix ![CodeCogsEqn (35)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e598cc88-039b-45a0-80a7-292b8a5aa205) is a **skew-symmetric matrix** and ```R``` is an **orthonormal matrix**. It is possible to ```decouple``` the translation matrix and rotation matrix from their product using **Singular Value Decomposition**. Therefore, if we can compute the Essential Matrix, we can calculate the translation ```t``` and rotation ```R```. Once we have these two unknowns, we have calibrated our uncalibrated stereo system.
 
-![CodeCogsEqn (36)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/14efeccb-beb8-41c2-9264-55524a173130)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/14efeccb-beb8-41c2-9264-55524a173130"/>
+</div>
+
+One issue with the epipolar constraint is that ![CodeCogsEqn (38)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2a21d317-7afb-4a42-9ddb-b0daf4d994ba) both represents the 3D coordinates of the same scene point and we do not have this information. That is, when we take two pictures, two arbitrary views of the scene, we do not have the locations of points in the scene in 3D. In fact, that's exactly what we hope to recover ultimately. 
 
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/3a699080-9f2b-464c-b5a6-fb0f640440c0"/>
+</div>
+
+However, we do have the image coordinates of the scene points, that is the projection of the scene onto the images - ![CodeCogsEqn (39)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/89d5781a-3137-4e93-af56-1574a04f75fa)
 
 
 
