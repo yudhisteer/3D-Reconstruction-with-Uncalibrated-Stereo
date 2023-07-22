@@ -8,9 +8,10 @@
 
 1. [Uncalibrated Stereo](#us)
 2. [Epipolar Geometry](#eg)
-3. [Fundamental Matrix]
-4. [Correspondences]
-5. [Estimating Depth]
+3. [Essential Matrix](#em)
+4. [Fundamental Matrix]
+5. [Correspondences]
+6. [Estimating Depth]
 
 ------------------------------
 
@@ -124,7 +125,10 @@ Hence, plugging in our equation above:
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e5d86db9-6238-4bf2-a429-592981be710e"/>
 </div>
 
-### 2.4 Essential Matrix
+--------------------------
+
+<a name="em"></a>
+## 3. Essential Matrix
 Note that it is possible to decompose our Essential Matrix into the translation and rotation matrix. Notice the translation matrix ![CodeCogsEqn (35)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e598cc88-039b-45a0-80a7-292b8a5aa205) is a **skew-symmetric matrix** and ```R``` is an **orthonormal matrix**. It is possible to ```decouple``` the translation matrix and rotation matrix from their product using **Singular Value Decomposition**. Therefore, if we can compute the Essential Matrix, we can calculate the translation ```t``` and rotation ```R```. Once we have these two unknowns, we have calibrated our uncalibrated stereo system.
 
 <div align="center">
@@ -206,35 +210,56 @@ In the camera coordinates frame, the center is located at the effective pinhole 
  (depth values) are **not equal to zero**.
 
 
-![CodeCogsEqn (55)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2c5db1b9-2eac-4674-9900-777e294c4638)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2c5db1b9-2eac-4674-9900-777e294c4638"/>
+</div>
 
 Hence, if ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/884ea43e-37e1-42bc-be36-47de1016a1ca) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dfb50a8f-c491-4500-9308-908ee4369088) are not equal to zero, then the rest of the equation should be equal to zero because on the right-hand side we have zero. So we can simply eliminate ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/884ea43e-37e1-42bc-be36-47de1016a1ca) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dfb50a8f-c491-4500-9308-908ee4369088) from this equation to get an expression:
 
 
-![CodeCogsEqn (56)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/40ac5610-69fa-4421-beef-49e60500f1e6)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/40ac5610-69fa-4421-beef-49e60500f1e6"/>
+</div>
 
 Note that ![CodeCogsEqn (57)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/06f9f3fb-e61f-45f2-9ed1-4a52ce946001) and ![CodeCogsEqn (58)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9df927ba-c64d-42d1-b902-5dc8b373f7d1) are 3x3 matrices hence, the product of  ![CodeCogsEqn (57)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f49a45e4-d645-4e46-a3a8-7fa0c9922bf4) with the Essential matrix and ![CodeCogsEqn (58)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9f4b9485-b096-4331-bbfe-5dac3199206d) also gives a 3x3 matrix known as the **Fundamental Matrix**:
 
-![CodeCogsEqn (59)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/cd04dd61-a140-489a-9b25-8a58cc575e5a)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/cd04dd61-a140-489a-9b25-8a58cc575e5a"/>
+</div>
+
+Re-writing:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/ce761a8e-b133-48c4-bf51-5c3650db9ec7"/>
+</div>
+
+One important observation is that finding the **fundamental matrix** using the given constraint enables us to easily derive the **essential matrix**. Since we have prior knowledge of ![CodeCogsEqn (61)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9dcf8bc8-6176-4ea1-8217-84c0e0a69e3d) and ![CodeCogsEqn (62)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/6b890933-8bbc-4b17-8ed8-afab177d6853)  internal parameters, determining the essential matrix becomes straightforward. By applying **singular value decomposition** to the essential matrix, taking into account the **skew-symmetry** of the translation matrix (```T```) and the orthogonality of the rotation matrix (```R```), we can decompose it into its constituent parts to obtain ```T``` and ```R```.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b80f3a1d-7f32-4a9e-b724-274dba74aebb"/>
+</div>
 
 
 -------------------
 <a name="fm"></a>
 ## 3. Fundamental Matrix
+
+
+![CodeCogsEqn (63)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0fc07698-7596-4f47-b752-526557b18e7e)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
