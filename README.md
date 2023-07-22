@@ -320,6 +320,10 @@ Since now we have the **Fundamental Matrix** ```F```, we need to compute the **E
 With our stereo system now **fully calibrated**, the next step is to identify correspondences between points in the left and right images. Our goal is to find the corresponding point in the right image for **every point** in the left image. Ultimately, this process will enable us to create a detailed ```depth map``` of the 3-dimensional scene.
 
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/Pseudo-LiDARs-and-3D-Computer-Vision/assets/59663734/079b502a-8779-46b9-b317-9b34e615393b" width="780" height="480"/>
+</div>
+
 
 
 ### 4.1 Epipolar Line
