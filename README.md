@@ -322,6 +322,7 @@ With our stereo system now **fully calibrated**, the next step is to identify co
 
 
 
+### 4.1 Epipolar Line
 
 
 
