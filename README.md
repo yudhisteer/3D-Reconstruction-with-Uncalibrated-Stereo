@@ -309,15 +309,7 @@ Since now we have the **Fundamental Matrix** ```F```, we need to compute the **E
 </div>
 
 
-Our uncalibrated stereo system is now fully calibrated!
-
-
-
-
-
-
-
-
+    Our uncalibrated stereo system is now fully calibrated!
 
 --------------------
 
@@ -325,6 +317,7 @@ Our uncalibrated stereo system is now fully calibrated!
 ## 4. Correspondences
 
 
+With our stereo system now **fully calibrated**, the next step is to identify correspondences between points in the left and right images. Our goal is to find the corresponding point in the right image for **every point** in the left image. Ultimately, this process will enable us to create a detailed ```depth map``` of the 3-dimensional scene.
 
 
 
