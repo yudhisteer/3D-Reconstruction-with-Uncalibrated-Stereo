@@ -245,6 +245,23 @@ One important observation is that finding the **fundamental matrix** using the g
 <a name="fm"></a>
 ## 3. Fundamental Matrix
 
+We now have our epipolar constraint, which essentially tells us that there is a single 3x3 matrix - the fundamental matrix that we need to find to calibrate our uncalibrated stereo system. So our goal here is to estimate the fundamental matrix.
+
+Initially, our task is to identify a limited number(normally ```8```) of corresponding features in the provided pair of images. Although the features might appear different due to the distinct viewpoints, applying techniques like **SIFT** to both images allows us to obtain reliable matches. These matches will serve as a starting point for further analysis.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/76770783-5086-421d-b05f-0d13a64152db" width="680" height="240"/>
+</div>
+
+Let's take one of these correspondences of the left and right images  and plug them into our epipolar constraint:
+
+![CodeCogsEqn (65)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99c00ff8-af2e-4ad0-b2aa-49cc7b4dd771)
+
+We know the image coordinates in the left and right camera image hence, we only need to find the Fundamental matrix. We expand the matrix to get a linear equation for one scene point:
+
+![CodeCogsEqn (66)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/7f4a137d-eb02-4088-bb12-c8db41f254ea)
+
+If we now stack all these equations for all corresponding points then we get:
 
 
 
