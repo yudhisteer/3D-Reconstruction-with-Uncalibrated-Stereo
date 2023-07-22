@@ -325,6 +325,7 @@ With our stereo system now **fully calibrated**, the next step is to identify co
 ### 4.1 Epipolar Line
 
 
+![CodeCogsEqn (73)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/090970fa-ac69-4bd7-924a-de1914a40169)
 
 
 
