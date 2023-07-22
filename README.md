@@ -288,22 +288,28 @@ Note that we know everything in matrix ```A``` as it only includes the image coo
 Next, we need to find the least squares solution for the fundamental matrix ```F```. We want ```Af```  as close to ```0``` as possible and ![CodeCogsEqn (71)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/80e08e55-9a2d-4704-80e8-3820c58b26df)(same as saying we are fixing the scale of ```F```):
 
 
-![CodeCogsEqn (72)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/ef9c345e-53d0-4db6-bd71-7f135af840e4)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/ef9c345e-53d0-4db6-bd71-7f135af840e4"/>
+</div>
 
 such that:
 
-![CodeCogsEqn (71)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/72139703-c777-415c-a9b9-e08381a67b6a)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/72139703-c777-415c-a9b9-e08381a67b6a"/>
+</div>
 
 This is referred to as a **constrained linear least squares problem**.
 
 Recall, we saw the same when solving the **Projection Matrix** during **Camera calibration** in the [Pseudo LiDARS with Stereo Vision](https://github.com/yudhisteer/Pseudo-LiDARs-with-Stereo-Vision) project.
 
+Since now we have the **Fundamental Matrix** ```F```, we need to compute the **Essential Matrix** ```E``` from known left and right intrinsic camera matrices. And once we have the Essential Matrix, we can decompose it using **Singular Value Decomposition** into the **translation** and **rotation** matrix.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/392d2cb2-98c9-45c4-9ea7-db3a68084bf7"/>
+</div>
 
 
-
-
-
-
+Our uncalibrated stereo system is now fully calibrated!
 
 
 
