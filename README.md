@@ -140,6 +140,77 @@ One issue with the epipolar constraint is that ![CodeCogsEqn (38)](https://githu
 
 However, we do have the image coordinates of the scene points, that is the projection of the scene onto the images - ![CodeCogsEqn (39)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/89d5781a-3137-4e93-af56-1574a04f75fa)
 
+To incorporate the image coordinates, we start with the perspective projection equations of the left camera.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/cc94be73-892d-47ff-bc26-6d9a28ffc4dc"/>
+</div>
+
+We multiply the two equations by z:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/55842666-6ba5-4d3a-a2f2-517e0c0db7fe"/>
+</div>
+
+Now using Homogeneous Coordinates:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f3ae128e-845e-4536-ab3d-c40d6dd13ee0"/>
+</div>
+
+
+We then have the product of this 3x3 camera matrix and the three-dimensional coordinates of the point scene point in the left camera - X and Y and Z. Note that we know the camera matrix as we assumed we know all the internal parameters of the two cameras.
+
+We then have a left and right camera equation and this is all corresponding to the same point in the scene:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/5da9a97a-2a59-42fb-b1ad-d94c9591b658"/>
+</div>
+
+Re-writing the equations above in a more compact form:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c1a91c36-3f5c-4992-ab5b-2af1c7473bd2"/>
+</div>
+
+We want to make ![CodeCogsEqn (46)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c49ebfd7-20bc-4c92-9785-1b64f30d31f8) and ![CodeCogsEqn (47)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e0f963c7-121c-49fd-a814-c18e43e5d1f7) the subject of formula:
+
+Left Camera
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/24eac60e-90d8-4db0-9224-ef51ce0bd269"/>
+</div>
+
+Right camera:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/72e1403a-6970-4b62-b933-27ec3763ee4e"/>
+</div>
+
+Recall our epipolar constraint:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/3a699080-9f2b-464c-b5a6-fb0f640440c0"/>
+</div>
+
+
+We now substitute ![CodeCogsEqn (50)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/44c3d2c6-0c82-433e-8ee5-9986ba2ae963) and ![CodeCogsEqn (51)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/48baee72-9da5-4478-ad87-03213de8facc) in the equation above:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
