@@ -196,8 +196,26 @@ Recall our epipolar constraint:
 
 We now substitute ![CodeCogsEqn (50)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/44c3d2c6-0c82-433e-8ee5-9986ba2ae963) and ![CodeCogsEqn (51)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/48baee72-9da5-4478-ad87-03213de8facc) in the equation above:
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/357e7975-3218-43ea-92e1-135d3bea0f17"/>
+</div>
+
+Note that in the equation above, we have our image coordinates and essential matrix, however, we also  have ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/7a540c37-3a3a-495d-b32b-46c8cd648a65) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2f44b520-6bde-40e2-a5f7-a438ed838157) which are the depth of the same scene point in the two cameras.
+
+In the camera coordinates frame, the center is located at the effective pinhole of the camera). Consequently, the **depth of any point cannot be zero**, except when the point coincides with the center of projection. Considering that the world is situated in front of the camera, it is reasonable to assert that ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/884ea43e-37e1-42bc-be36-47de1016a1ca) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dfb50a8f-c491-4500-9308-908ee4369088)
+ (depth values) are **not equal to zero**.
 
 
+![CodeCogsEqn (55)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2c5db1b9-2eac-4674-9900-777e294c4638)
+
+Hence, if ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/884ea43e-37e1-42bc-be36-47de1016a1ca) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dfb50a8f-c491-4500-9308-908ee4369088) are not equal to zero, then the rest of the equation should be equal to zero because on the right-hand side we have zero. So we can simply eliminate ![CodeCogsEqn (53)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/884ea43e-37e1-42bc-be36-47de1016a1ca) and ![CodeCogsEqn (54)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dfb50a8f-c491-4500-9308-908ee4369088) from this equation to get an expression:
+
+
+![CodeCogsEqn (56)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/40ac5610-69fa-4421-beef-49e60500f1e6)
+
+Note that ![CodeCogsEqn (57)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/06f9f3fb-e61f-45f2-9ed1-4a52ce946001) and ![CodeCogsEqn (58)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9df927ba-c64d-42d1-b902-5dc8b373f7d1) are 3x3 matrices hence, the product of  ![CodeCogsEqn (57)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f49a45e4-d645-4e46-a3a8-7fa0c9922bf4) with the Essential matrix and ![CodeCogsEqn (58)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9f4b9485-b096-4331-bbfe-5dac3199206d) also gives a 3x3 matrix known as the **Fundamental Matrix**:
+
+![CodeCogsEqn (59)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/cd04dd61-a140-489a-9b25-8a58cc575e5a)
 
 
 
