@@ -255,13 +255,61 @@ Initially, our task is to identify a limited number(normally ```8```) of corresp
 
 Let's take one of these correspondences of the left and right images  and plug them into our epipolar constraint:
 
-![CodeCogsEqn (65)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99c00ff8-af2e-4ad0-b2aa-49cc7b4dd771)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99c00ff8-af2e-4ad0-b2aa-49cc7b4dd771"/>
+</div>
 
 We know the image coordinates in the left and right camera image hence, we only need to find the Fundamental matrix. We expand the matrix to get a linear equation for one scene point:
 
-![CodeCogsEqn (66)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/7f4a137d-eb02-4088-bb12-c8db41f254ea)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/7f4a137d-eb02-4088-bb12-c8db41f254ea"/>
+</div>
 
 If we now stack all these equations for all corresponding points then we get:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/cf7f99a4-1e24-4d0b-aafd-ad867b6b67a0" width="680" height="140"/>
+</div>
+
+
+Which can also be written as a more compact form as:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/fb29f36c-2161-4f2c-86a8-7dc948b842c2"/>
+</div>
+
+Note that we know everything in matrix ```A``` as it only includes the image coordinates in the left and right cameras. We also have the fundamental matrix written as a vector ```f```. The fundamental matrix ```F``` and the fundamental matrix ```K x F``` describe equivalent epipolar geometries. This implies that ```F``` is only defined up to a **scale factor**, allowing for scaling without changing the resulting images. Consequently, the scale of ```F``` can be adjusted accordingly.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e470fd0c-b01b-4728-ba81-548273fa6d23"/>
+</div>
+
+
+Next, we need to find the least squares solution for the fundamental matrix ```F```. We want ```Af```  as close to ```0``` as possible and ![CodeCogsEqn (71)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/80e08e55-9a2d-4704-80e8-3820c58b26df)(same as saying we are fixing the scale of ```F```):
+
+
+![CodeCogsEqn (72)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/ef9c345e-53d0-4db6-bd71-7f135af840e4)
+
+such that:
+
+![CodeCogsEqn (71)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/72139703-c777-415c-a9b9-e08381a67b6a)
+
+This is referred to as a **constrained linear least squares problem**.
+
+Recall, we saw the same when solving the **Projection Matrix** during **Camera calibration** in the [Pseudo LiDARS with Stereo Vision](https://github.com/yudhisteer/Pseudo-LiDARs-with-Stereo-Vision) project.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
