@@ -9,8 +9,8 @@
 1. [Uncalibrated Stereo](#us)
 2. [Epipolar Geometry](#eg)
 3. [Essential Matrix](#em)
-4. [Fundamental Matrix]
-5. [Correspondences]
+4. [Fundamental Matrix](#fm)
+5. [Correspondences](#c)
 6. [Estimating Depth]
 
 ------------------------------
@@ -247,6 +247,11 @@ One important observation is that finding the **fundamental matrix** using the g
 
 
 
+
+--------------------
+
+<a name="c"></a>
+## 4. Correspondences
 
 
 
