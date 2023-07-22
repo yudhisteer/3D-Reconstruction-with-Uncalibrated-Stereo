@@ -10,7 +10,7 @@
 2. [Epipolar Geometry](#eg)
 3. [Essential Matrix](#em)
 4. [Fundamental Matrix](#fm)
-5. [Correspondences](#c)
+5. [Correspondences](#cc)
 6. [Estimating Depth]
 
 ------------------------------
@@ -313,7 +313,7 @@ Since now we have the **Fundamental Matrix** ```F```, we need to compute the **E
 
 --------------------
 
-<a name="c"></a>
+<a name="cc"></a>
 ## 4. Correspondences
 
 
