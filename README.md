@@ -246,10 +246,6 @@ One important observation is that finding the **fundamental matrix** using the g
 ## 3. Fundamental Matrix
 
 
-![CodeCogsEqn (63)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0fc07698-7596-4f47-b752-526557b18e7e)
-
-
-
 
 
 
