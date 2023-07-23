@@ -316,14 +316,27 @@ Since now we have the **Fundamental Matrix** ```F```, we need to compute the **E
 <a name="cc"></a>
 ## 4. Correspondences
 
-
 With our stereo system now **fully calibrated**, the next step is to identify correspondences between points in the left and right images. Our goal is to find the corresponding point in the right image for **every point** in the left image. Ultimately, this process will enable us to create a detailed ```depth map``` of the 3-dimensional scene.
 
+Recall in a simple stereo setup, there are two cameras: the left camera and the right camera. Their relationship is straightforward, with the right camera positioned horizontally at a distance called the **baseline** from the left camera. Both cameras have parallel optical axes, so any point in the left image corresponds to a point in the right image lying on the **same horizontal scanline**. This makes stereo matching reduced to a **1-dimensional search**. The same principle applies to uncalibrated stereo systems.
 
 <div align="center">
   <img src="https://github.com/yudhisteer/Pseudo-LiDARs-and-3D-Computer-Vision/assets/59663734/079b502a-8779-46b9-b317-9b34e615393b" width="780" height="480"/>
 </div>
 
+In uncalibrated stereo setups, the stereo matching problem still involves a one-dimensional search. After finding the rotation and translation between the two cameras, the question arises about which line in the right image to search for corresponding points.
+
+Recall the epipolar plane is unique for any given point in a scene. It includes the point ```P```, the epipoles, and the center of the two cameras. The epipolar plane intersects with our two image planes to produce the epipolar lines as shown in pink above. Hence, every scene point has two corresponding epipolar lines, one each on the two image planes.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/82224bd0-5927-4fa3-89d3-7d158085cd44" width="700" height="370"/>
+</div>
+
+When we have a point in the image plane, for example, ![CodeCogsEqn (78)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9d17674c-b871-4180-afda-7cb1d98fc767) in the left image plane, then the corresponding point in the right image must lie on the epipolar line on the right image plane. If we take into consideration u_l, which represents a single outgoing ray, the epipolar line is defined by projecting all the points on this ray onto the right image. Consequently, for any point on this ray, finding its matching point in the right image involves a search along a single line. However, the question remains: which particular line should we search along?
+
+It has been found that, with the **fundamental matrix** and points in the left image, it is possible to derive the **equation of the straight line** in the right image. This equation serves as a guide during the search process to find the corresponding matching points.
+
+    Once more, the process of finding correspondents reduces to a 1-dimensional search.
 
 
 ### 4.1 Epipolar Line
