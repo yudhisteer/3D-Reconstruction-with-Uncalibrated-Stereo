@@ -329,7 +329,7 @@ In uncalibrated stereo setups, the stereo matching problem still involves a one-
 Recall the epipolar plane is unique for any given point in a scene. It includes the point ```P```, the epipoles, and the center of the two cameras. The epipolar plane intersects with our two image planes to produce the epipolar lines as shown in pink above. Hence, every scene point has two corresponding epipolar lines, one each on the two image planes.
 
 <div align="center">
-  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/82224bd0-5927-4fa3-89d3-7d158085cd44" width="700" height="370"/>
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/19955146-8f22-4098-923f-a6a42b04e8a3" width="700" height="370"/>
 </div>
 
 When we have a point in the image plane, for example, ![CodeCogsEqn (78)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9d17674c-b871-4180-afda-7cb1d98fc767) in the left image plane, then the corresponding point in the right image must lie on the epipolar line on the right image plane. If we take into consideration u_l, which represents a single outgoing ray, the epipolar line is defined by projecting all the points on this ray onto the right image. Consequently, for any point on this ray, finding its matching point in the right image involves a search along a single line. However, the question remains: which particular line should we search along?
@@ -341,11 +341,35 @@ It has been found that, with the **fundamental matrix** and points in the left i
 
 ### 4.1 Epipolar Line
 
+Let's assume we have the Fundamental Matrix ```F``` and a single point in the left image ![CodeCogsEqn (79)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/4bc2d31b-66a2-4202-9f92-8866f131aebe). In the equation below, we want to find an expression for ![CodeCogsEqn (80)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/3e4fa54f-2fae-43df-b245-3c5c136d4d4d):
 
-![CodeCogsEqn (73)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/090970fa-ac69-4bd7-924a-de1914a40169)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0720b618-c03f-4b85-891b-8d7600a1c88c"/>
+</div>
+
+By expanding our matrix equation:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/090970fa-ac69-4bd7-924a-de1914a40169"/>
+</div>
+
+Simplifying furthermore we have the equation of a straight line:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e6324936-a533-4185-b53c-55db38f58a8b"/>
+</div>
 
 
+When we have the fundamental matrix, for any point provided in the left image, it becomes possible to determine the specific line in the right image where the corresponding point should be located. Likewise, if we have a point in the right image, I can use the same method to calculate the equation for the epipolar line in the left image. This equation then directs the search to find the corresponding point for the given point in the right image.
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/9348fcb1-9679-4d23-9828-07e048a16bde" width="700" height="240"/>
+</div>
+
+To establish correspondences between points in the left and right images, we take a small window around a point in the left image and apply **template matching** along the determined red line in the right image. This process helps us find the best-matching point in the right image for the given point in the left image, enabling accurate matching between the two images.
+
+
+Once we have the corresponding pairs in the left and right images, we can use these pairs for triangulation, enabling the computation of the depths of the three-dimensional coordinates for points in the scene.
 
 --------------------
 ## References
