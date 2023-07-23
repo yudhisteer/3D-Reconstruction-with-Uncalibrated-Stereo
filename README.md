@@ -11,7 +11,7 @@
 3. [Essential Matrix](#em)
 4. [Fundamental Matrix](#fm)
 5. [Correspondences](#cc)
-6. [Estimating Depth]
+6. [Estimating Depth](#ed)
 
 ------------------------------
 
@@ -243,7 +243,7 @@ One important observation is that finding the **fundamental matrix** using the g
 
 -------------------
 <a name="fm"></a>
-## 3. Fundamental Matrix
+## 4. Fundamental Matrix
 
 We now have our epipolar constraint, which essentially tells us that there is a single 3x3 matrix - the fundamental matrix that we need to find to calibrate our uncalibrated stereo system. So our goal here is to estimate the fundamental matrix.
 
@@ -314,7 +314,7 @@ Since now we have the **Fundamental Matrix** ```F```, we need to compute the **E
 --------------------
 
 <a name="cc"></a>
-## 4. Correspondences
+## 5. Correspondences
 
 With our stereo system now **fully calibrated**, the next step is to identify correspondences between points in the left and right images. Our goal is to find the corresponding point in the right image for **every point** in the left image. Ultimately, this process will enable us to create a detailed ```depth map``` of the 3-dimensional scene.
 
@@ -339,7 +339,7 @@ It has been found that, with the **fundamental matrix** and points in the left i
     Once more, the process of finding correspondents reduces to a 1-dimensional search.
 
 
-### 4.1 Epipolar Line
+### 5.1 Epipolar Line
 
 Let's assume we have the Fundamental Matrix ```F``` and a single point in the left image ![CodeCogsEqn (79)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/4bc2d31b-66a2-4202-9f92-8866f131aebe). In the equation below, we want to find an expression for ![CodeCogsEqn (80)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/3e4fa54f-2fae-43df-b245-3c5c136d4d4d):
 
@@ -372,4 +372,17 @@ To establish correspondences between points in the left and right images, we tak
 Once we have the corresponding pairs in the left and right images, we can use these pairs for triangulation, enabling the computation of the depths of the three-dimensional coordinates for points in the scene.
 
 --------------------
+
+<a name="ed"></a>
+## 6. Estimating Depth
+
+
+
+
+
+
+
+
+
+-------------------
 ## References
