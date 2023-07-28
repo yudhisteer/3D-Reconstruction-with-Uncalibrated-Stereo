@@ -376,11 +376,24 @@ Once we have the corresponding pairs in the left and right images, we can use th
 <a name="ed"></a>
 ## 6. Estimating Depth
 
+At this stage, we have established correspondences between points in the left and right images. Now, our objective is to utilize the image coordinates of these corresponding pairs to estimate the three-dimensional coordinates of each point in the scene. This process, known as **triangulation**, allows us to compute the **spatial positions** accurately.
 
 
+Below are the equations for point ```P``` in the 3D coordinate frame of the left and right camera being projected onto the image perspective projection using the internal parameters onto the image plane. Note that the 3x4 matrices are the intrinsic matrices.
 
+Left Camera Imaging Equation:
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/bc2776b4-b6d0-4829-bb99-c6da815a59b1"/>
+</div>
 
+Right Camera Imaging Equation:
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/22d91758-4dc9-4ea1-a60f-8b912631f47d"/>
+</div>
 
+Note that since we have now calibrated our uncalibrated stereo system, we also have the relative position and orientation between the two cameras:
+
+![CodeCogsEqn (85)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99d24cd2-64e3-4a3a-a732-043b450ee316)
 
 
 
