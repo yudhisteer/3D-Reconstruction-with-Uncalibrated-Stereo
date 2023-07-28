@@ -393,7 +393,64 @@ Right Camera Imaging Equation:
 
 Note that since we have now calibrated our uncalibrated stereo system, we also have the relative position and orientation between the two cameras:
 
-![CodeCogsEqn (85)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99d24cd2-64e3-4a3a-a732-043b450ee316)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/99d24cd2-64e3-4a3a-a732-043b450ee316"/>
+</div>
+
+We thus substitute it in the left camera imaging equation:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/42113b28-08a9-44d2-8041-657090d12479"/>
+</div>
+    
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0b06c587-c462-4809-9cf1-b6a6403f7c06"/>
+</div>
+
+Note that the product of the intrinsic matrix and the extrinsic matrix becomes the **Projection Matrix**.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/731928ce-c9cb-4170-8a03-3acfb658881d"/>
+</div>
+
+
+Keeping the Right Camera Imaging Equation the same:
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/22d91758-4dc9-4ea1-a60f-8b912631f47d"/>
+</div>
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2c583df9-d0df-416c-b922-240968db4c38"/>
+</div>
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c4ae1f0c-1938-4d51-a2cf-629872af870d"/>
+</div>
+
+When we arrange these two equations we get it in the form of:
+
+![CodeCogsEqn (91)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/6773cb5f-6df7-4b61-81e3-76979530a73a)
+
+
+This is an overdetermined system of linear equations. We find the least squares using pseudo-inverse:
+
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/caf2d684-0141-40db-b095-be09e9c05121"/>
+</div>
+
+We repeat this for every pair of corresponding points in the left and right images and then that gives us a complete **3D depth map** of the scene. This is how we go from arbitrary views to death maps of the scene through this calibration process.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
