@@ -12,6 +12,8 @@
 4. [Fundamental Matrix](#fm)
 5. [Correspondences](#cc)
 6. [Estimating Depth](#ed)
+7. [Multi-View Stereo](#mvs)
+8. [Structure from Motion](#sfm)
 
 ------------------------------
 
@@ -443,14 +445,15 @@ This is an overdetermined system of linear equations. We find the least squares 
 We repeat this for every pair of corresponding points in the left and right images and then that gives us a complete **3D depth map** of the scene. This is how we go from arbitrary views to death maps of the scene through this calibration process.
 
 
+---------------------
 
+<a name="mvs"></a>
+## 7. Multi-View Stereo
 
+------------------
 
-
-
-
-
-
+<a name="sfm"></a>
+## 8. Structure from Motion
 
 
 
