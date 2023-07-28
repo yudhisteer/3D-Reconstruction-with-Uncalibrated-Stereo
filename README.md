@@ -429,8 +429,9 @@ Keeping the Right Camera Imaging Equation the same:
 
 When we arrange these two equations we get it in the form of:
 
-![CodeCogsEqn (91)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/6773cb5f-6df7-4b61-81e3-76979530a73a)
-
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/6773cb5f-6df7-4b61-81e3-76979530a73a"/>
+</div>
 
 This is an overdetermined system of linear equations. We find the least squares using pseudo-inverse:
 
