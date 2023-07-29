@@ -4,6 +4,8 @@
 
 ## Abstract
 
+## Datasets
+
 ## Plan of Action
 
 1. [Uncalibrated Stereo](#us)
@@ -599,4 +601,7 @@ Below is the result of a 3D reconstruction scene:
 4. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cs.nyu.edu/~fergus/teaching/vision_2012/6_Multiview_SfM.pdf
 5. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://courses.cs.washington.edu/courses/cse455/10wi/lectures/multiview.pdf
 6. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://carlos-hernandez.org/papers/fnt_mvs_2015.pdf
-7. 
+7. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.cs.cmu.edu/~16385/s17/Slides/12.4_8Point_Algorithm.pdf
+8. https://www.youtube.com/watch?v=zX5NeY-GTO0&ab_channel=CyrillStachniss
+9. https://vision.middlebury.edu/mview/data/
+10. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://vision.stanford.edu/teaching/cs231a_autumn1112/lecture/lecture10_multi_view_cs231a.pdf
