@@ -19,7 +19,7 @@
 
 <a name="us"></a>
 ## 1. Uncalibrated Stereo
-In the previous project - [Pseudo LiDARS with Stereo Vison](https://github.com/yudhisteer/Pseudo-LiDARs-with-Stereo-Vision) - we have seen how we could use two sets of cameras separated by a distance ```b``` (baseline) and using the intrinsic and extrinsic parameters, we would calculate the disparity, build a depth map, and ultimately get the distances of objects. In that scenario, all the parameters were provided to us from the KITTI dataset. 
+In the previous project - [Pseudo LiDARS with Stereo Vision](https://github.com/yudhisteer/Pseudo-LiDARs-with-Stereo-Vision) - we have seen how we could use two sets of cameras separated by a distance ```b``` (baseline) and using the intrinsic and extrinsic parameters, we would calculate the disparity, build a depth map, and ultimately get the distances of objects. In that scenario, all the parameters were provided to us from the KITTI dataset. 
 
 But what if we have two images of the same scene taken by two different persons and perhaps two different cameras and we know the internal parameters of the cameras. From these two arbitrary views, can we compute the translation and rotation of one camera w.r.t another camera? If so. can we compute a 3D model of the scene? In this project, we will devise a method to estimate the 3D structure of a static scene from two arbitrary views.
 
@@ -450,18 +450,19 @@ We repeat this for every pair of corresponding points in the left and right imag
 <a name="mvs"></a>
 ## 7. Multi-View Stereo
 
-Multi-View Stereo (MVS) is a technique used for dense 3D reconstruction of scenes using multiple 2D images of the same scene taken from different viewpoints. MVS aims to generate a dense 3D representation of the scene, where every pixel in the images is assigned a corresponding 3D point in the reconstructed space.
+Multi-View Stereo ```(MVS)``` is a technique used for dense ```3D reconstruction``` of scenes using ```multiple 2D images``` of the same scene taken from **different viewpoints**. MVS aims to generate a dense 3D representation of the scene, where every pixel in the images is assigned a corresponding 3D point in the ```reconstructed space```.
 
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/659a32a0-6a58-4c70-9e6e-fe24ba096c50" width="580" height="370"/>
 </div>
-When working with matching images with known camera parameters, the 3D geometry of the scene allows for establishing correspondences between pixels in different images. When camera parameters are known, matching a pixel in one image with pixels in another image becomes a one-dimensional (1D) search problem.
+
+When working with matching images with known camera parameters, the 3D geometry of the scene allows for establishing ```correspondences``` between pixels in different images. When camera parameters are known, matching a pixel in one image with pixels in another image becomes a one-dimensional ```(1D)``` search problem.
 
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73"/>
 </div>
 
-Matching pixels across images is a challenging problem that is not unique to stereo or multi-view stereo. **Optical flow** is another active field that addresses the problem of dense correspondence across images. However, there are some key differences between MVS and optical flow:
+Matching pixels across images is a challenging problem that is not unique to stereo or multi-view stereo. **Optical flow** is another active field that addresses the problem of ```dense correspondence``` across images. However, there are some key differences between MVS and optical flow:
 
 1. Optical flow typically deals with a ```two-image problem```, similar to two-view stereo, whereas MVS involves ```multiple images```.
 
@@ -470,8 +471,60 @@ Matching pixels across images is a challenging problem that is not unique to ste
 3. The main application of **optical flow** is ```image interpolation``` and ```motion estimation```, whereas **MVS** is primarily focused on ```3D reconstruction``` and ```depth estimation``` of a scene.
 
 ### 7.1 Two-view Stereo Reconstruction
+Before we dive into MVS, let's try something simpler: the Two-View Stereo. We pick up where we left off in the [Pseudo LiDARS with Stereo Vision](https://github.com/yudhisteer/Pseudo-LiDARs-with-Stereo-Vision) project. 
 
-<img width="442" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f225fe14-c38f-4750-b156-7294c51eafb9" >
+We start by taking two pictures from the KITTI Dataset: a left and right image:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/087b23b1-4fe4-4a5c-ab66-17fedcc3151e" width="700" height="200"/>
+</div>
+
+We then calculate the disparity using ```Stereo-Global Block Matching (SGBM)``` algorithm between these two images:
+
+```python
+    # Compute disparity map
+    disparity_map = compute_disparity(left_image, right_image, num_disparities=90, block_size=5, window_size=5, matcher="stereo_sgbm", show_disparity=True)
+```
+
+The result:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f225fe14-c38f-4750-b156-7294c51eafb9" width="600" height="250"/>
+</div>
+
+#### 7.1.1 Q-Matrix
+In order to use the ```reprojectImageTo3D``` function from OpenCV, we first need to calcuate the Q-matrix laos known as the ```Disparity-to-depth mapping matrix```.
+
+
+**Q-matrix**
+- 4x4 matrix that takes the disparity value and calculates the depth of the point in 3d space.
+- It represents the relationship between disparity values and depth.
+
+**Depth Map**
+- 2D image that represents the depth of each pixel in the image.
+
+**Disparity Map**
+- 2D image that represents the difference between pixel disparities in left and right images of a stereo pair.
+- Used to calculate the depth of a point in 3D space.
+
+```python
+    # Compute Q matrix
+    Q = np.zeros((4, 4))
+
+    # Perform stereo rectification
+    _, _, _, _, Q, _, _ = cv2.stereoRectify(cameraMatrix1=camera_matrix_left,
+                                            cameraMatrix2=camera_matrix_right,
+                                            distCoeffs1=None,
+                                            distCoeffs2=None,
+                                            imageSize=left_image.shape[:2],  # Provide the image size
+                                            R=np.identity(3),
+                                            T=np.array([baseline[0], 0., 0.]),  # Translation vector
+                                            R1=None,
+                                            R2=None,
+                                            P1=None,
+                                            P2=None,
+                                            Q=Q)
+```
 
 
 
