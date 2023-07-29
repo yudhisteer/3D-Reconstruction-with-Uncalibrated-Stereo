@@ -450,13 +450,28 @@ We repeat this for every pair of corresponding points in the left and right imag
 <a name="mvs"></a>
 ## 7. Multi-View Stereo
 
-<img width="406" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/659a32a0-6a58-4c70-9e6e-fe24ba096c50">
+Multi-View Stereo (MVS) is a technique used for dense 3D reconstruction of scenes using multiple 2D images of the same scene taken from different viewpoints. MVS aims to generate a dense 3D representation of the scene, where every pixel in the images is assigned a corresponding 3D point in the reconstructed space.
 
-![21-Figure1 7-1](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/659a32a0-6a58-4c70-9e6e-fe24ba096c50" width="580" height="370"/>
+</div>
+When working with matching images with known camera parameters, the 3D geometry of the scene allows for establishing correspondences between pixels in different images. When camera parameters are known, matching a pixel in one image with pixels in another image becomes a one-dimensional (1D) search problem.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73"/>
+</div>
+
+Matching pixels across images is a challenging problem that is not unique to stereo or multi-view stereo. **Optical flow** is another active field that addresses the problem of dense correspondence across images. However, there are some key differences between MVS and optical flow:
+
+1. Optical flow typically deals with a ```two-image problem```, similar to two-view stereo, whereas MVS involves ```multiple images```.
+
+2. In optical flow, camera calibration is ```not assumed```, while MVS **relies** on known camera parameters.
+
+3. The main application of **optical flow** is ```image interpolation``` and ```motion estimation```, whereas **MVS** is primarily focused on ```3D reconstruction``` and ```depth estimation``` of a scene.
 
 ### 7.1 Two-view Stereo Reconstruction
 
-<img width="442" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f225fe14-c38f-4750-b156-7294c51eafb9">
+<img width="442" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f225fe14-c38f-4750-b156-7294c51eafb9" >
 
 
 
