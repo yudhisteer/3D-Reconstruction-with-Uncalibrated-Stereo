@@ -450,13 +450,38 @@ We repeat this for every pair of corresponding points in the left and right imag
 <a name="mvs"></a>
 ## 7. Multi-View Stereo
 
+<img width="406" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/659a32a0-6a58-4c70-9e6e-fe24ba096c50">
+
+![21-Figure1 7-1](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73)
+
 ------------------
 
 <a name="sfm"></a>
 ## 8. Structure from Motion
+
+<img width="375" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a3267af1-0c78-461d-a894-244e4ff70939">
+
+
+<img width="190" alt="Structure-from-Motion" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e53c145b-ec7a-4aeb-a8f3-ab4f846bd7f3">
+
+
+![Structure-from-Motion-SfM-photogrammetric-principle-Source-Theia-sfmorg-2016](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0f8a8c5d-87f6-4652-ac2f-0626ca98ed86)
+
+
+
+
+
+
 
 
 
 
 -------------------
 ## References
+1. https://www.youtube.com/watch?v=GQ3W9ltqqrw&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=13&ab_channel=PRGUMDTeaching
+2. https://www.youtube.com/watch?v=RGDNs1kQ7NI&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=16&ab_channel=PRGUMDTeaching
+3. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://vgl.ict.usc.edu/Research/XimeaRiver/XimeaRiver_EG_2017.pdf
+4. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cs.nyu.edu/~fergus/teaching/vision_2012/6_Multiview_SfM.pdf
+5. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://courses.cs.washington.edu/courses/cse455/10wi/lectures/multiview.pdf
+6. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://carlos-hernandez.org/papers/fnt_mvs_2015.pdf
+7. 
