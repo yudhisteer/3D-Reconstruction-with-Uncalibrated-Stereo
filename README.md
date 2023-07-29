@@ -454,6 +454,13 @@ We repeat this for every pair of corresponding points in the left and right imag
 
 ![21-Figure1 7-1](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73)
 
+<img width="442" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f225fe14-c38f-4750-b156-7294c51eafb9">
+
+
+
+https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/db26dd45-2190-44fe-b537-cac4da3a038e
+
+
 ------------------
 
 <a name="sfm"></a>
