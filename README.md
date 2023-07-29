@@ -497,7 +497,7 @@ In order to use the ```reprojectImageTo3D``` function from OpenCV, we first need
 
 
 **Q-matrix**
-- 4x4 matrix that takes the disparity value and calculates the depth of the point in 3d space.
+- 4x4 matrix that takes the disparity value and calculates the depth of the point in 3D space.
 - It represents the relationship between disparity values and depth.
 
 **Depth Map**
@@ -506,6 +506,24 @@ In order to use the ```reprojectImageTo3D``` function from OpenCV, we first need
 **Disparity Map**
 - 2D image that represents the difference between pixel disparities in left and right images of a stereo pair.
 - Used to calculate the depth of a point in 3D space.
+
+In summary, the Q-matrix provides the mathematical mapping between pixel disparities abd 3D coordinates. It allows us to transform the disparity information captured by the stereo camera system into depth information which we can use to perform tasks as 3D reconstruction or scene understanding and so on.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0ba12e93-f74c-47b7-a91e-f78883b5f162"/>
+</div>
+
+Where:
+
+- b: baseline
+- d: disparity value (u,v)
+- ![CodeCogsEqn (95)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/262774f2-6e39-45da-a3b5-62147881345a): 3D coordinates of scene point in Homogeneous coordinates.
+
+- ![CodeCogsEqn (94)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c17961d2-ca0c-4ca3-a441-89dbe90a70a4): Q-matrix
+- ![CodeCogsEqn (96)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/19965676-fba5-4dc5-8449-44cbeeb45b80): pixel coordinates
+- ![CodeCogsEqn (97)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/2cb66b3e-83f8-4d6d-8955-e88587058417) and ![CodeCogsEqn (98)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/39f5cf02-486f-482e-bd1c-d2d039e0795c): optical centers
+- ![CodeCogsEqn (99)](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/73cf58dc-6c1e-4464-9f72-e2fbf4212efa): Is equal to 0 if aligned.
+
 
 ```python
     # Compute Q matrix
@@ -526,9 +544,18 @@ In order to use the ```reprojectImageTo3D``` function from OpenCV, we first need
                                             Q=Q)
 ```
 
+We can now use the Q-matrix and disparity map to obtain 3D points:
 
+```python
+    # Obtain 3D points from the disparity map
+    points = cv2.reprojectImageTo3D(disparity_map.copy(), Q)
+```
 
-https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/db26dd45-2190-44fe-b537-cac4da3a038e
+Below is the result of a 3D reconstruction scene:
+
+<video src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/db26dd45-2190-44fe-b537-cac4da3a038e" controls="controls" style="max-width: 730px;">
+</video>
+
 
 ### 7.2 Multi-view Stereo Reconstruction
 
