@@ -644,9 +644,6 @@ Before rectification, the intrinsic and extrinsic parameters of the two cameras 
 
 ```
 
-<img width="411" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c66e90f9-e3dc-4552-a48f-08881c5e1947">
-
-
 
 #### 7.2.3 Rectification
 Stereo rectification is a geometric transformation applied to a pair of stereo images to make them appear as if they were taken from the same viewpoint. It is a crucial preprocessing step in stereo vision applications that involve calculating the disparity (depth) map between the two images. The goal of stereo rectification is to simplify the stereo correspondence problem by aligning the epipolar lines in the two images.
