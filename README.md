@@ -775,11 +775,24 @@ The process of Structure from Motion typically involves the following steps:
 
 The result of the Structure from Motion process is a **sparse** 3D point cloud representation of the scene and the camera poses for each image frame.
 
+![ezgif com-video-to-gif](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/daa56216-4a19-40e9-90d5-7365dd92463b)
 
 
+### 8.1 Feature Marching
 
+```python
+    ### --------------- FEATURE MATCHING ----------------------- ###
 
+    # Feature Matching using SIFT
+    keypoints1, descriptors1, keypoints2, descriptors2, good_matches = match_features_sift(img1_rgb, img2_rgb, show_image=True)
 
+    # Obtain the image coordinates (x, y) of the matched keypoints in both images
+    img1pts, img2pts = get_matched_keypoints_coordinates(keypoints1, keypoints2)
+```
+
+<img width="1013" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0a702090-7a98-44ba-bb78-0fa2a46cddba">
+
+<img width="1023" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/bb8ed3dc-a620-4092-bbd4-3c8c97ef9094">
 
 
 
