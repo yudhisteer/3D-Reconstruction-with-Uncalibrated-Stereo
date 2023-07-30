@@ -605,3 +605,5 @@ Below is the result of a 3D reconstruction scene:
 8. https://www.youtube.com/watch?v=zX5NeY-GTO0&ab_channel=CyrillStachniss
 9. https://vision.middlebury.edu/mview/data/
 10. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://vision.stanford.edu/teaching/cs231a_autumn1112/lecture/lecture10_multi_view_cs231a.pdf
+11. http://ksimek.github.io/2013/08/13/intrinsic/
+12. https://github.com/cranberrymuffin/voxel-carving
