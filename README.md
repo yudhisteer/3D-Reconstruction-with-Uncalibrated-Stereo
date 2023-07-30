@@ -613,7 +613,7 @@ topologies['skipping_2'] = tuple(zip((0,4,8),
 ```
 
 #### 7.2.2 Camera Calibration
-Before rectification, the intrinsic and extrinsic parameters of the two cameras are estimated through a calibration process. The calibration determines the camera matrices, distortion coefficients, and relative pose (rotation and translation) between the cameras.
+Before rectification, the **intrinsic** and **extrinsic** parameters of the two cameras are estimated through a calibration process. The calibration determines the ```camera matrices```, ```distortion coefficients```, and ```relative pose``` (rotation and translation) between the cameras.
 
 ```python
     # StereoRectifyOptions
@@ -646,9 +646,9 @@ Before rectification, the intrinsic and extrinsic parameters of the two cameras 
 
 
 #### 7.2.3 Rectification
-Stereo rectification is a geometric transformation applied to a pair of stereo images to make them appear as if they were taken from the same viewpoint. It is a crucial preprocessing step in stereo vision applications that involve calculating the disparity (depth) map between the two images. The goal of stereo rectification is to simplify the stereo correspondence problem by aligning the epipolar lines in the two images.
+Stereo rectification is a geometric transformation applied to a pair of stereo images to make them appear as if they were taken from the **same viewpoint**. The goal of stereo rectification is to simplify the **stereo correspondence** problem by ```aligning the epipolar lines``` in the two images.
 
-The rectification process warps the two images so that their epipolar lines become parallel to the horizontal axis. This ensures that for each point in one image, its corresponding point in the other image lies along the same horizontal scan line. Rectification simplifies the stereo-matching process as it reduces the search space for finding corresponding points from 2D search to 1D.
+The rectification process **warps** the two images so that their epipolar lines become **parallel** to the horizontal axis. This ensures that for each point in one image, its corresponding point in the other image lies along the **same horizontal scan line**. Rectification simplifies the stereo-matching process as it reduces the search space for finding corresponding points from ```2D``` search to ```1D```.
 
 ```python
     # 1. Rectification
@@ -658,9 +658,9 @@ The rectification process warps the two images so that their epipolar lines beco
 
 ```left_maps``` or ```right_maps``` represents the rectification maps for the left or right camera. These rectification maps are used to transform the pixels of the original left or right image to their corresponding positions in the rectified left or right image. The ```cv2.initUndistortRectifyMap``` function generates two maps, ```left_maps[0]``` and ```left_maps[1]```, which are needed for the rectification process. These maps are essentially lookup tables that define the pixel correspondence between the original and rectified images.
 
-1. **left_maps[0]**: Represents the **horizontal (x) displacement map**. It contains the x-coordinate of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the horizontal direction.
+1. **left_maps[0]**: Represents the **horizontal (x) displacement map**. It contains the ```x-coordinate``` of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the horizontal direction.
 
-2. **left_maps[1]**: Represents the **vertical (y) displacement map**. It contains the y-coordinate of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the vertical direction.
+2. **left_maps[1]**: Represents the **vertical (y) displacement map**. It contains the ```y-coordinate``` of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the vertical direction.
 
 Below is the image of the rock, the ```left_maps[1]``` and ```left_image_rectified```.
 
@@ -672,7 +672,7 @@ Below is the image of the rock, the ```left_maps[1]``` and ```left_image_rectifi
 
 
 #### 7.2.4 Disparity Estimation
-Once the images are rectified, they can be re-projected into 3D space using **disparity** information. The disparity is the horizontal shift between the corresponding points in the rectified images, and it is used to calculate the depth (distance from the camera) of each pixel in the scene.
+Once the images are rectified, they can be re-projected into 3D space using **disparity** information. 
 
 ```python
  # StereoMatcherOptions
@@ -744,7 +744,7 @@ The 3D reconstruction of the temple:
 </video>
 
 
-Note that we got better results for The Rock due to its non-complex structure and a better disparity map. We also have some noise which needs to be filtered. For the Temple's point cloud, we can see the outline of the temple but it is obstructed by noise. For further improvement, CreSTEREO can be used to build a better disparity map.
+Note that we got better results for The Rock due to its non-complex structure and a better disparity map. We also have some noise which needs to be filtered. For the Temple's point cloud, we can see the outline of the temple but it is obstructed by noise. For further improvement, **CreSTEREO** can be used to build a better disparity map.
 
 ------------------
 
