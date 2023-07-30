@@ -567,6 +567,36 @@ Below is the result of a 3D reconstruction scene:
 
 
 ### 7.2 Multi-view Stereo Reconstruction
+We will now dive into multi-view stereo. We will take two datasets: [Temple of the Dioskouroi in Agrigento, Sicily](https://vision.middlebury.edu/mview/data/) and [The Rock](https://vision.middlebury.edu/mview/data/). We have ```12``` images for each dataset and for each image we have their **extrinsic** and **intrinsic** parameters.
+
+Below is a video for the 12 images for the datasets:
+
+<table>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c3a85dfa-39a4-405f-b11c-588bc3bfaace" alt="GIF 1" style="height: 500px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a199f156-3964-4fcc-bb00-d0a1227e30ea" alt="GIF 2" style="height: 500px;"></td>
+  </tr>
+</table>
+
+
+#### 7.2.1 Topologies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
