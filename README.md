@@ -580,23 +580,217 @@ Below is a video for the 12 images for the datasets:
 
 
 #### 7.2.1 Topologies
+Recall that we had to calculate the disparity between two images. In the Two-view Reconstruction, it was pretty straightforward however, when we have more than 2 images then we have different ways to calculate the disparity between images. Below are ```5``` topologies to calculate disparities. We can choose to have either a dense 3D model at the end with ```360``` or ```overlapping``` topologies,  a medium dense point cloud with ```adjacent``` or a sparse one with  ```skipping_1``` and ```skipping_2```.
+
+
+<table>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b9704d53-022c-44e3-a95c-79b84954ff1c" alt="Image 1" style="height: 170px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f21e0f17-fde5-41e2-8b20-11118b06441f" alt="Image 2" style="height: 170px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c00d64e1-5377-49fd-8d99-3a5e58b1da46" alt="Image 3" style="height: 170px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/fa0c79b2-9a8e-431f-8e9b-8cb302502acd" alt="Image 4" style="height: 170px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/48385c9d-2055-4114-b41b-31e6a4708cb3" alt="Image 5" style="height: 170px;"></td>
+  </tr>
+</table>
+
+Below is the code for the topologies:
+
+```python
+topologies['360'] = tuple(zip((0,1,2,3,4,5,6,7,8,9,10,11),
+                              (1,2,3,4,5,6,7,8,9,10,11,0)))
+
+topologies['overlapping'] = tuple(zip((0,1,2,3,4,5,6,7,8,9,10),
+                                      (1,2,3,4,5,6,7,8,9,10,11)))
+
+topologies['adjacent'] = tuple(zip((0,2,4,6,8,10),
+                                   (1,3,5,7,9,11)))
+
+topologies['skipping_1'] = tuple(zip((0,3,6,9),
+                                     (1,4,7,10)))
+
+topologies['skipping_2'] = tuple(zip((0,4,8),
+                                     (1,5,9)))
+```
+
+#### 7.2.2 Camera Calibration
+Before rectification, the intrinsic and extrinsic parameters of the two cameras are estimated through a calibration process. The calibration determines the camera matrices, distortion coefficients, and relative pose (rotation and translation) between the cameras.
+
+```python
+def get_camera_parameters(options):
+    """
+    This function extracts camera parameters required for stereo rectification from a provided dictionary of options.
+    The options dictionary contains various parameters that control the behavior of stereo rectification and camera calibration processes.
+    Stereo rectification is a critical step in stereo vision applications that aligns the two camera images to facilitate accurate stereo correspondence and depth estimation.
+
+    Parameters:
+    - options: A dictionary containing various options for stereo rectification and camera calibration.
+
+    Return Values:
+    The function returns the following camera parameters:
+    - left_distortion_coefficients: A tuple representing the distortion coefficients of the left camera. In this function, it is set to a fixed tuple (0.0, 0.0, 0.0, 0.0, 0.0) as it assumes no distortion. Modify this if you have actual distortion coefficients.
+    - right_distortion_coefficients: A tuple representing the distortion coefficients of the right camera. In this function, it is also set to a fixed tuple (0.0, 0.0, 0.0, 0.0, 0.0) for no distortion. Modify this if you have actual distortion coefficients.
+    - imageSize: A tuple representing the size of the input images (width, height).
+    - newImageSize: A tuple representing the desired size of the output rectified images (width, height).
+    - alpha: A float value representing the balance between preserving all pixels and fully rectifying the images during stereo rectification.
+    """
+    # Extract relevant options for stereo rectification
+    flags = options['StereoRectify']['flags']
+
+    # Define fixed distortion coefficients assuming no distortion
+    distortion_coefficients = (0.0, 0.0, 0.0, 0.0, 0.0)
+    left_distortion_coefficients = distortion_coefficients
+    right_distortion_coefficients = distortion_coefficients
+
+    # Extract image size and new image size options
+    imageSize = options['StereoRectify'][
+        'imageSize']  # Tuple (width, height) representing the size of the input images.
+    newImageSize = options['StereoRectify'][
+        'newImageSize']  # Tuple (width, height) representing the desired size of the output rectified images.
+
+    # Extract alpha option for balancing pixel preservation and full rectification
+    alpha = options['StereoRectify']['alpha']
+
+    # Return the extracted camera parameters
+    return left_distortion_coefficients, right_distortion_coefficients, imageSize, newImageSize, alpha
+```
+
+<img width="411" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c66e90f9-e3dc-4552-a48f-08881c5e1947">
+
+
+
+#### 7.2.3 Rectification
+Stereo rectification is a geometric transformation applied to a pair of stereo images to make them appear as if they were taken from the same viewpoint. It is a crucial preprocessing step in stereo vision applications that involve calculating the disparity (depth) map between the two images. The goal of stereo rectification is to simplify the stereo correspondence problem by aligning the epipolar lines in the two images.
+
+```python
+def calibrate_and_rectify(options, left_K, right_K, left_R, right_R, left_T, right_T):
+    """
+    This function performs camera calibration and stereo rectification using the provided camera parameters and options.
+    It calculates the stereo rectification matrices, projection matrices, and disparity-to-depth mapping matrix (Q).
+    Additionally, it computes rectification maps to transform the input images to rectified stereo images.
+
+    Parameters:
+    - options: A dictionary containing various options for stereo rectification and camera calibration.
+    - left_K: Camera matrix of the left camera.
+    - right_K: Camera matrix of the right camera.
+    - left_R: Rotation matrix of the left camera.
+    - right_R: Rotation matrix of the right camera.
+    - left_T: Translation vector of the left camera.
+    - right_T: Translation vector of the right camera.
+
+    Return Values:
+    The function returns the following:
+    - Q: Disparity-to-depth mapping matrix.
+    - extrinsics_left_rectified_to_global: Extrinsics matrix mapping points in the rectified left camera frame to the global/world frame.
+    - left_maps: Rectification map for the left camera.
+    - right_maps: Rectification map for the right camera.
+    """
+    # Get the parameters
+    left_distortion_coefficients, right_distortion_coefficients, imageSize, newImageSize, alpha = get_camera_parameters(options)
+
+    # Stereo Rectify
+    R_intercamera = np.dot(right_R, left_R.T)  # R * T
+    T_intercamera = right_T - np.dot(R_intercamera, left_T)  # Translation and rotation keeping the first one as baseline
+
+    left_R_rectified, right_R_rectified, P1_rect, P2_rect, Q, validPixROI1, validPixROI2 = cv2.stereoRectify(
+        cameraMatrix1=left_K, distCoeffs1=left_distortion_coefficients,
+        cameraMatrix2=right_K, distCoeffs2=right_distortion_coefficients,
+        imageSize=imageSize,
+        newImageSize=newImageSize,
+        R=R_intercamera, T=T_intercamera,
+        flags=options['StereoRectify']['flags'], alpha=alpha)
+
+    # Back to Global
+    R2, T2 = left_R, left_T  # Perspective is from the left image.
+    R3, T3 = R2.T, np.dot(-R2.T, T2)  # Invert direction of transformation to map camera to world.
+    R_left_rectified_to_global = np.dot(R3, left_R_rectified.T)
+    T_left_rectified_to_global = T3
+    extrinsics_left_rectified_to_global = R_left_rectified_to_global.astype(np.float32), T_left_rectified_to_global.astype(np.float32)
+
+    # Create rectification maps
+    rectification_map_type = cv2.CV_16SC2
+    left_maps = cv2.initUndistortRectifyMap(left_K,
+                                            left_distortion_coefficients,
+                                            left_R_rectified,
+                                            P1_rect,
+                                            size=newImageSize,
+                                            m1type=rectification_map_type)
+
+    right_maps = cv2.initUndistortRectifyMap(right_K,
+                                             right_distortion_coefficients,
+                                             right_R_rectified,
+                                             P2_rect,
+                                             size=newImageSize,
+                                             m1type=rectification_map_type)
+
+    return Q, extrinsics_left_rectified_to_global, left_maps, right_maps
+
+
+```
+
+The rectification process warps the two images so that their epipolar lines become parallel to the horizontal axis. This ensures that for each point in one image, its corresponding point in the other image lies along the same horizontal scan line. Rectification simplifies the stereo-matching process as it reduces the search space for finding corresponding points from 2D search to 1D.
+
+
+```left_maps``` represents the rectification maps for the left camera. These rectification maps are used to transform the pixels of the original left image to their corresponding positions in the rectified left image. The ```cv2.initUndistortRectifyMap``` function generates two maps, ```left_maps[0]``` and ```left_maps[1]```, which are needed for the rectification process. These maps are essentially lookup tables that define the pixel correspondence between the original and rectified images.
+
+1. **left_maps[0]**: Represents the **horizontal (x) displacement map**. It contains the x-coordinate of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the horizontal direction.
+
+2. **left_maps[1]**: Represents the **vertical (y) displacement map**. It contains the y-coordinate of the destination pixel in the rectified image for each pixel in the original left image. When applied to the original left image, it remaps the pixels to their new positions in the rectified image along the vertical direction.
+
+Below is the image of the rock, the ```left_maps[1]``` and ```left_image_rectified```.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/dd6d86bb-3cd3-4a09-b0e7-4bdcf2e3b8c7" width="700" height="220"/>
+</div>
 
 
 
 
+#### 7.2.4 Disparity Estimation
+Once the images are rectified, they can be re-projected into 3D space using **disparity** information. The disparity is the horizontal shift between the corresponding points in the rectified images, and it is used to calculate the depth (distance from the camera) of each pixel in the scene.
+
+```python
+    # StereoMatcherOptions
+    StereoMatcherOptions = {
+        'MinDisparity': -64,  # Minimum disparity value, influences the maximum depth.
+        'NumDisparities': 256,  # Number of disparities, influences the minimum depth.
+        'BlockSize': 21,  # Size of the window used for matching (odd number).
+        'SpeckleWindowSize': 0,  # Speckle window size, must be strictly positive to turn on speckle post-filter.
+        'SpeckleRange': 0,  # Speckle range, must be >= 0 to enable speckle post-filter.
+        'Disp12MaxDiff': 0  # Maximum allowed difference (in integer pixel units) in the left-right disparity check.
+    }
+
+    # StereoBMOptions
+    StereoBMOptions = {
+        'PreFilterType': cv2.StereoBM_PREFILTER_NORMALIZED_RESPONSE,
+        # Pre-filter type, can be StereoBM_PREFILTER_NORMALIZED_RESPONSE or StereoBM_PREFILTER_XSOBEL.
+        'PreFilterSize': 5,  # Size of the pre-filter kernel, must be odd and within the range 5..255.
+        'PreFilterCap': 63,  # Pre-filter cap, must be within the range 1..63. Used to truncate pixel values.
+        'TextureThreshold': 10,  # Texture threshold, minimum difference to accept the computed disparity.
+        'UniquenessRatio': 10
+        # Uniqueness ratio, defines the minimum margin between the best and second-best matching cost.
+    }
+
+    # StereoSGBMOptions
+    StereoSGBMOptions = {
+        'PreFilterCap': 0,  # Pre-filter cap.
+        'UniquenessRatio': 0,
+        # Uniqueness ratio, defines the minimum margin between the best and second-best matching cost.
+        'P1': 16 * 21 * 21,  # "Depth Change Cost"
+        'P2': 16 * 21 * 21,  # "Depth Step Cost"
+        'Mode': cv2.StereoSGBM_MODE_HH
+        # Matching mode, can be StereoSGBM_MODE_SGBM, StereoSGBM_MODE_HH, or StereoSGBM_MODE_SGBM_3WAY.
+    }
+```
+
+Below is the disparity map using ```SGBM```:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/55e5203e-5937-4420-bd8e-9cc32cd65233" width="500" height="370"/>
+</div>
 
 
 
-
-
-
-
-
-
-
-
-
-
+#### 7.2.5 Project to 3D
 
 
 
