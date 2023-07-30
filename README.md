@@ -608,3 +608,4 @@ Below is the result of a 3D reconstruction scene:
 11. http://ksimek.github.io/2013/08/13/intrinsic/
 12. https://github.com/cranberrymuffin/voxel-carving
 13. https://www.youtube.com/watch?v=yoQ1zHQsugg&t=2s&ab_channel=PrakrutiCatherineGogia
+14. https://medium.com/@AaronLeeIV/3d-reconstruction-from-2d-images-cb21096631ad
