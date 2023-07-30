@@ -735,12 +735,19 @@ We will now use our Q-matrix and disparity map to project our image into 3D spac
     output_file_path = reproject_and_save_ply(disparity_img, opencv_matcher, index, output_folder)
 ```
 
-
+The 3D reconstruction of the rock:
 
 <video src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/c6d8e1ee-2041-4e83-9a85-f70188ebedb8" controls="controls" style="max-width: 730px;">
 </video>
 
 
+The 3D reconstruction of the temple:
+
+<video src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/bd0126a6-5715-488b-a940-6080eaae5d4a" controls="controls" style="max-width: 730px;">
+</video>
+
+
+Note that we got better results for The Rock due to its non-complex structure and a better disparity map. We also have some noise which needs to be filtered. For the Temple's point cloud, we can see the outline of the temple but it is obstructed by noise. For further improvement, CreSTEREO can be used to build a better disparity map.
 
 ------------------
 
