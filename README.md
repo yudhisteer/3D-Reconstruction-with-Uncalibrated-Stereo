@@ -750,14 +750,30 @@ Note that we got better results for The Rock due to its non-complex structure an
 
 <a name="sfm"></a>
 ## 8. Structure from Motion
-
-<img width="375" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a3267af1-0c78-461d-a894-244e4ff70939">
-
-
-<img width="190" alt="Structure-from-Motion" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/e53c145b-ec7a-4aeb-a8f3-ab4f846bd7f3">
+Structure from Motion aims to recover the three-dimensional (3D) structure of a scene and camera motion from a set of 2D images or video frames. In simpler terms, it's about reconstructing the 3D shape of objects and the camera's trajectory as it moves through a scene, using only the 2D images or video as input.
 
 
-![Structure-from-Motion-SfM-photogrammetric-principle-Source-Theia-sfmorg-2016](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0f8a8c5d-87f6-4652-ac2f-0626ca98ed86)
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a3267af1-0c78-461d-a894-244e4ff70939" width="380" height="370"/>
+</div>
+
+The process of Structure from Motion typically involves the following steps:
+
+1. **Feature Detection and Matching**: Distinctive features, such as ```corners```, ```edges```, or ```keypoints```, are detected in each image. These features are then matched across multiple images to find corresponding points.
+
+2. **Camera Pose Estimation**: Given the correspondences between image points, the next step is to estimate the camera poses (positions and orientations) for each image. This process can be achieved using techniques like the ```RANSAC``` algorithm. This step is most important as we will need to estimate the **Fundamental Matrix** and from it the **Essential Matrix**. Then decompose the Essential Matrix to recover the relative **rotation** and **translation** matrix.
+
+3. **Triangulation**: Triangulation is the process of finding the ```3D coordinates``` of points in the scene by intersecting corresponding rays from multiple camera viewpoints.
+
+4. **Bundle Adjustment**: Bundle adjustment is an ```optimization``` process used to refine the camera poses and 3D points simultaneously. It minimizes the reprojection error, which is the difference between the observed image points and the reprojected 3D points on the image plane.
+
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/f59f1d9a-c3b9-4e45-ada6-25f129aa8561" width="800" height="150"/>
+</div>
+
+
+The result of the Structure from Motion process is a **sparse** 3D point cloud representation of the scene and the camera poses for each image frame.
 
 
 
