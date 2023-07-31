@@ -879,9 +879,26 @@ Implementation:
     E = K.T.dot(F.dot(K))
 ```
 
-
-
 #### 8.1.5 Camera Pose
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------
 ## References
