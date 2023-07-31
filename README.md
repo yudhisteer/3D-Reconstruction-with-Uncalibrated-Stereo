@@ -482,12 +482,19 @@ Multi-View Stereo ```(MVS)``` is a technique used for dense ```3D reconstruction
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/659a32a0-6a58-4c70-9e6e-fe24ba096c50" width="580" height="370"/>
 </div>
+<div align="center">
+    <p>Image Source: <a href="https://carlos-hernandez.org/papers/icvss_chapter2010_mvs.pdf">Shape from photographs: a multi-view stereo pipeline</a></p>
+</div>
 
 When working with matching images with known camera parameters, the 3D geometry of the scene allows for establishing ```correspondences``` between pixels in different images. When camera parameters are known, matching a pixel in one image with pixels in another image becomes a one-dimensional ```(1D)``` search problem.
 
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8b8e8aa6-4cf4-4368-8dac-07cb1c3f7c73"/>
 </div>
+<div align="center">
+    <p>Image Source: <a href="https://www.researchgate.net/figure/Illustration-of-several-grouping-principles-Adapted-from-Perceptual-Organization-in_fig1_230587594">Multi-View 3D-Reconstruction</a></p>
+</div>
+
 
 Matching pixels across images is a challenging problem that is not unique to stereo or multi-view stereo. **Optical flow** is another active field that addresses the problem of ```dense correspondence``` across images. However, there are some key differences between MVS and optical flow:
 
