@@ -784,7 +784,7 @@ Similarly to MVS, let's start simple with two images and reconstruct a 3D model.
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/daa56216-4a19-40e9-90d5-7365dd92463b" alt="GIF" style="height: 300px;">
 </p>
 
-#### 8.1 Feature Matching
+#### 8.1.1 Feature Matching
 We will now use the **SIFT** algorithm in order to find the matching features on two images. We will also need the x-y coordinates of these matching features.
 
 ```python
@@ -808,12 +808,21 @@ If we take two pictures with minimal orientation change, then we have the possib
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0a702090-7a98-44ba-bb78-0fa2a46cddba" width="700" height="300"/>
 </div>
 
-#### 8.2 Fundamental Matrix
+#### 8.1.2 Fundamental Matrix
+We will now use the ```findFundamentalMat``` function from OpenCV to find the Fundamental Matrix, ```F```. The function also returns the mask, which indicates the inliers used to estimate ```F```. We will use the **RANSAC** algorithm to calculate  ```F```.
 
+```python
+    ### --------------- FUNDAMENTAL MATRIX ----------------------- ###
+    F, mask = find_fundamental_matrix(img1pts, img2pts)
+```
 
+```python
+[[-3.61303143e-08  7.46545960e-07 -1.81463985e-03]
+ [ 1.22535945e-07 -1.68257713e-07  1.97311328e-02]
+ [ 7.27410294e-04 -2.12164946e-02  1.00000000e+00]]
+```
 
-
-#### 8.3 Epipolar Lines
+#### 8.1.3 Epipolar Lines
 
 
 
