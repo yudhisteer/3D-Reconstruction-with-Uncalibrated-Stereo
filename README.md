@@ -6,6 +6,21 @@
 
 ## Datasets
 
+1. KITTI Dataset
+
+    - [3D Object Detection Evaluation](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)
+   
+2. Middlebury Datasets:
+
+    - [Temple Dataset](https://www.cvlibs.net/datasets/kitti/)
+
+    - [Rock Dataset](https://www.cvlibs.net/datasets/kitti/)
+
+3. Fountain Dataset
+
+    - [Fountain-P11 Dataset](https://www.cvlibs.net/datasets/kitti/)
+
+
 ## Plan of Action
 
 1. [Uncalibrated Stereo](#us)
@@ -1011,6 +1026,15 @@ As Bundle Adjustment is a complex and tedious process, I will instead use ICP to
 We successfully aligned both point clouds!
 
 ## Conclusion
+In this project, we saw the 3D reconstruction of a Rock, Temple, and Fountain using various photogrammetry techniques. We observed that with Multi-View Stereo (MVS) rpovides a denser and more detailed 3D reconstruction, making it preferable for scenes with textureless or repetitive regions. On the other hand, Structure-from-Motion (SFM) is faster and more computationally efficient, making it suitable for real-time applications and smaller scenes. 
+
+<p align="center">
+  <img width="600" height="350" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/890a40a3-e73f-4314-891e-5ba698a38b6e">
+</p>
+
+However, further improvements can be achieved by incorporating **Neural Radiance Fields (NeRFs)** into the pipeline. NeRFs is an innovative approach to 3D scene reconstruction that utilizes **neural networks** to model ```volumetric``` scenes. Unlike traditional methods such as ```Multi-View Stereo (MVS)``` and ```Structure-from-Motion (SFM)```, which rely on ```sparse point clouds``` or ```depth maps```, NeRFs learn the ```radiance``` at every 3D point in the scene. 
+
+This enables NeRFs to generate **highly detailed** and **photorealistic reconstructions**, even in regions with limited data or texture. NeRFs offer **continuous** and **consistent** scene representation, filling in missing data, refining surface geometry, and providing a comprehensive 3D representation that preserves intricate details. With its ability to leverage information from multiple views and generate high-fidelity renderings, NeRFs **surpass** MVS and SFM in terms of accuracy and realism, making it a superior choice for tasks requiring rich 3D scene understanding and visualization. 
 
 -------------------
 ## References
@@ -1028,3 +1052,12 @@ We successfully aligned both point clouds!
 12. https://github.com/cranberrymuffin/voxel-carving
 13. https://www.youtube.com/watch?v=yoQ1zHQsugg&t=2s&ab_channel=PrakrutiCatherineGogia
 14. https://medium.com/@AaronLeeIV/3d-reconstruction-from-2d-images-cb21096631ad
+15. https://arxiv.org/pdf/2003.08934.pdf
+16. https://arxiv.org/pdf/1806.08734.pdf
+17. https://creiser.github.io/kilonerf/
+18. https://jonbarron.info/mipnerf/
+19. https://arxiv.org/pdf/2012.03927.pdf
+20. https://arxiv.org/pdf/2012.02190.pdf
+21. https://lingjie0206.github.io/papers/NSVF/
+22. https://nerfies.github.io/
+23. https://arxiv.org/pdf/2008.02268.pdf
