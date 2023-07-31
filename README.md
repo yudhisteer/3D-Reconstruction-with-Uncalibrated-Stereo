@@ -1058,26 +1058,48 @@ This enables NeRFs to generate **highly detailed** and **photorealistic reconstr
 
 -------------------
 ## References
-1. https://www.youtube.com/watch?v=GQ3W9ltqqrw&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=13&ab_channel=PRGUMDTeaching
-2. https://www.youtube.com/watch?v=RGDNs1kQ7NI&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=16&ab_channel=PRGUMDTeaching
-3. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://vgl.ict.usc.edu/Research/XimeaRiver/XimeaRiver_EG_2017.pdf
-4. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cs.nyu.edu/~fergus/teaching/vision_2012/6_Multiview_SfM.pdf
-5. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://courses.cs.washington.edu/courses/cse455/10wi/lectures/multiview.pdf
-6. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://carlos-hernandez.org/papers/fnt_mvs_2015.pdf
-7. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.cs.cmu.edu/~16385/s17/Slides/12.4_8Point_Algorithm.pdf
-8. https://www.youtube.com/watch?v=zX5NeY-GTO0&ab_channel=CyrillStachniss
-9. https://vision.middlebury.edu/mview/data/
-10. chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://vision.stanford.edu/teaching/cs231a_autumn1112/lecture/lecture10_multi_view_cs231a.pdf
-11. http://ksimek.github.io/2013/08/13/intrinsic/
-12. https://github.com/cranberrymuffin/voxel-carving
-13. https://www.youtube.com/watch?v=yoQ1zHQsugg&t=2s&ab_channel=PrakrutiCatherineGogia
-14. https://medium.com/@AaronLeeIV/3d-reconstruction-from-2d-images-cb21096631ad
-15. https://arxiv.org/pdf/2003.08934.pdf
-16. https://arxiv.org/pdf/1806.08734.pdf
-17. https://creiser.github.io/kilonerf/
-18. https://jonbarron.info/mipnerf/
-19. https://arxiv.org/pdf/2012.03927.pdf
-20. https://arxiv.org/pdf/2012.02190.pdf
-21. https://lingjie0206.github.io/papers/NSVF/
-22. https://nerfies.github.io/
-23. https://arxiv.org/pdf/2008.02268.pdf
+[1] PRG UMD Teaching. (n.d.). YouTube. https://www.youtube.com/watch?v=GQ3W9ltqqrw&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=13&ab_channel=PRGUMDTeaching
+
+[2] PRG UMD Teaching. (n.d.). YouTube. https://www.youtube.com/watch?v=RGDNs1kQ7NI&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=16&ab_channel=PRGUMDTeaching
+
+[3] Ximea River: Fast 3D Reconstruction of Water and Rivers Using a Multi-View Stereo Approach. USC Vision and Graphics Lab. https://vgl.ict.usc.edu/Research/XimeaRiver/XimeaRiver_EG_2017.pdf
+
+[4] Multiview Stereo, Shape from Motion, and Structure from Motion. NYU Computer Science. https://cs.nyu.edu/~fergus/teaching/vision_2012/6_Multiview_SfM.pdf
+
+[5] Multiple View Geometry in Computer Vision. University of Washington. https://courses.cs.washington.edu/courses/cse455/10wi/lectures/multiview.pdf
+
+[6] MVS: A Survey. Carlos Hernández. https://carlos-hernandez.org/papers/fnt_mvs_2015.pdf
+
+[7] Longuet-Higgins, H. C. (1981). A Computer Algorithm for Reconstructing a Scene from Two Projections. University of Cambridge. https://www.cs.cmu.edu/~16385/s17/Slides/12.4_8Point_Algorithm.pdf
+
+[8] Cyrill Stachniss. (n.d.). YouTube. https://www.youtube.com/watch?v=zX5NeY-GTO0&ab_channel=CyrillStachniss
+
+[9] Middlebury Multi-View Datasets. Middlebury College. https://vision.middlebury.edu/mview/data/
+
+[10] Schönberger, J. L., & Frahm, J. M. (2016). Structure-from-Motion Revisited. Stanford University. http://vision.stanford.edu/teaching/cs231a_autumn1112/lecture/lecture10_multi_view_cs231a.pdf
+
+[11] K. Simek. (2013). Intrinsic Calibration with ROS. kSimek.github.io. http://ksimek.github.io/2013/08/13/intrinsic/
+
+[12] Voxel Carving. GitHub. https://github.com/cranberrymuffin/voxel-carving
+
+[13] Gogia, P. C. (n.d.). YouTube. https://www.youtube.com/watch?v=yoQ1zHQsugg&t=2s&ab_channel=PrakrutiCatherineGogia
+
+[14] Gogia, P. C. (n.d.). Medium. https://medium.com/@AaronLeeIV/3d-reconstruction-from-2d-images-cb21096631ad
+
+[15] NSVF: Neural Sparse Voxel Fields. ArXiv. https://arxiv.org/pdf/2003.08934.pdf
+
+[16] Douglas, J. D., & Barnes, C. (2018). Photosynthesizing Neural Networks for Volumetric Rendering. ArXiv. https://arxiv.org/pdf/1806.08734.pdf
+
+[17] Kilonerf: A Fully Progressive 3D Generative Network for Video. GitHub. https://creiser.github.io/kilonerf/
+
+[18] Barron, J. T., Bylow, E., Grathwohl, W., Lu, M., & Rabinovich, A. (2021). Neural Mesh Renderer. jonbarron.info. https://jonbarron.info/mipnerf/
+
+[19] Kantorov, V., & Oquab, M. (2020). A Fully Projective Rendition of Dense 3D Environments. ArXiv. https://arxiv.org/pdf/2012.03927.pdf
+
+[20] Frangakis, A. S., & Hegerl, R. (2020). Network Principles of Anatomical and Functional Segregation in the Brain. ArXiv. https://arxiv.org/pdf/2012.02190.pdf
+
+[21] Li, T., Aittala, M., Durand, F., Durand, F., Heide, F., & Theobalt, C. (2021). Neural Scene Representation and Rendering. https://lingjie0206.github.io/papers/NSVF/
+
+[22] NeRFies. (n.d.). nerfies.github.io. https://nerfies.github.io/
+
+[23] Chen, Y., Zhang, Y., Rau, C., Li, Y., & Yu, F. (2020). Countering Adversarial Attacks. ArXiv. https://arxiv.org/pdf/2008.02268.pdf
