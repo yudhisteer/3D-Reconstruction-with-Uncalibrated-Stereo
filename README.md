@@ -817,6 +817,12 @@ We will now use the ```findFundamentalMat``` function from OpenCV to find the Fu
     F, mask = find_fundamental_matrix(img1pts, img2pts)
 ```
 
+```python
+[[-2.32608990e-08 -4.14097505e-07  2.13234106e-04]
+ [ 1.10774376e-06 -9.43696790e-08  1.04326766e-02]
+ [-1.17953256e-03 -1.15538347e-02  1.00000000e+00]]
+```
+
 #### 8.1.3 Epipolar Lines
 Using the Fundamental Matrix ```F``` and feature matching coordinates, we will compute the epipolar lines.
 
@@ -861,14 +867,6 @@ Below is the result of the epipolar lines when trying different algorithms for t
 #### 8.1.4 Essential Matrix
 Note that we have the intrinsic parameters (given in the dataset) but not the extrinsic ones. Hence, we have our ```K``` matrix - our Camera Matrix  and we will it to estimate the Essential Matrix.
 
-Recall the formula:
-
-<div align="center">
-  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b80f3a1d-7f32-4a9e-b724-274dba74aebb"/>
-</div>
-
-Implementation:
-
 ```python
     ### --------------- ESSENTIAL MATRIX ----------------------- ###
 
@@ -879,11 +877,39 @@ Implementation:
     E = K.T.dot(F.dot(K))
 ```
 
+```python
+[[ -0.17712546  -3.15858845  -0.6596703 ]
+ [  8.44947533  -0.72103913  33.2312819 ]
+ [ -0.27489299 -33.93990701  -0.68567946]]
+```
+
 #### 8.1.5 Camera Pose
+We derived the Essential Matrix from the Fundamental Matrix. Now, we will decompose the Essential Matrix to recover ```R``` and ```t```.
+Recall the formula:
 
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b80f3a1d-7f32-4a9e-b724-274dba74aebb"/>
+</div>
 
+```python
+    ### --------------- CAMERA POSE ----------------------- ###
 
+    retval, R, t, mask = cv2.recoverPose(E, img1pts, img2pts, K)
+```
+Where **R** = 
 
+```python
+[[ 0.98756121 -0.02267659 -0.1555912 ]
+ [ 0.02552626  0.99954058  0.01634136]
+ [ 0.15514915 -0.02010975  0.98768636]]
+```
+and **t** = 
+
+```python
+[[ 0.99550392]
+ [ 0.0178422 ]
+ [-0.09302477]]
+```
 
 #### 8.1.6 Triangulation
 
