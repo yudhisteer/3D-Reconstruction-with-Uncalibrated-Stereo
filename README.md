@@ -858,11 +858,22 @@ Below is the result of the epipolar lines when trying different algorithms for t
 </table>
 
 
+#### 8.1.4 Essential Matrix
+Note that we have the intrinsic parameters (given in the dataset) but not the extrinsic ones. Hence, we have our ```K``` matrix - our Camera Matrix  and we will it to estimate the Essential Matrix.
+
+```python
+    ### --------------- ESSENTIAL MATRIX ----------------------- ###
+
+    K = np.array([[2759.48, 0, 1520.69],
+                  [0, 2764.16, 1006.81],
+                  [0, 0, 1]])
+
+    E = K.T.dot(F.dot(K))
+```
 
 
 
-
-
+#### 8.1.5 Camera Pose
 
 -------------------
 ## References
