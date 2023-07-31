@@ -978,6 +978,40 @@ https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/
 Notice that from the first model, we get a good outline of the fountain and then when we superimpose the other point clouds, they also have a good outline however they are not correctly aligned. It seems that all of them have a different center, hence a different orientation and position.
 
 
+### 8.3 Bundle Adjustment
+In SfM, the camera poses and 3D points are initially estimated from feature correspondences in the images. However, due to noise, inaccuracies, and unmodeled factors during the initial reconstruction, the estimated 3D points may not perfectly align with the observed image points as we saw above.
+
+Bundle Adjustment aims to improve the accuracy of the reconstruction by finding the best possible camera poses and 3D point positions that minimize the discrepancies between the projected 3D points and the actual image observations. It considers all the images simultaneously, taking into account the correlations between camera poses and 3D points, to achieve a globally optimal solution. It simultaneously adjusts the camera positions and orientations, as well as the positions of the 3D points, in order to minimize the ```reprojection error``` between the 2D image observations and their corresponding 3D points.
+
+Some methods for Bundle Adjustment:
+
+1. **Levenberg-Marquardt (LM)**: It is an iterative method that combines the steepest descent method and the Gauss-Newton method to efficiently find the optimal parameters.
+
+2. **Gauss-Newton**: The Gauss-Newton algorithm is an iterative method used to solve non-linear least squares problems.
+
+3. **Conjugate Gradient (CG)**: Conjugate Gradient is an iterative method used to solve large-scale linear systems.
+
+4. **Sparse Bundle Adjustment (SBA)**: SBA is an extension of Bundle Adjustment that takes advantage of the sparsity in the Jacobian matrix, which represents the derivatives of the cost function with respect to the camera poses and 3D points.
+
+5. **Robust Bundle Adjustment**: Robust techniques, such as Huber loss or Tukey loss, can be applied to Bundle Adjustment to handle outliers and improve the robustness of the optimization process against noisy or erroneous measurements.
+
+
+### 8.4  Iterative Closest Point (ICP)
+If we have two 3D reconstructions obtained from different viewpoints and want to align them to create a more complete and accurate 3D model, Iterative Closest Point (ICP) could be used to find the best transformation (translation and rotation) that aligns the two points clouds together.
+
+As Bundle Adjustment is a complex and tedious process, I will instead use ICP to enhance the accuracy and completeness of the 3D reconstructions. Below is the result of before and after using ICP:
+
+<table>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b4b903ed-3e69-4537-a10f-39b3fac0af89" alt="GIF 1" style="height: 300px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0ebf801d-9df4-4174-b445-73bda3d0e71a" alt="GIF 2" style="height: 300px;"></td>
+  </tr>
+</table>
+
+We successfully aligned both point clouds!
+
+## Conclusion
+
 -------------------
 ## References
 1. https://www.youtube.com/watch?v=GQ3W9ltqqrw&list=PLZgpos4wVnCYhf5jsl2HcsCl_Pql6Kigk&index=13&ab_channel=PRGUMDTeaching
