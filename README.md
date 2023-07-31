@@ -788,6 +788,9 @@ Structure from Motion aims to recover the three-dimensional (3D) structure of a 
 <div align="center">
   <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/a3267af1-0c78-461d-a894-244e4ff70939" width="380" height="370"/>
 </div>
+<div align="center">
+    <p>Image Source: <a href="https://cs.nyu.edu/~fergus/teaching/vision_2012/6_Multiview_SfM.pdf">Multi-view Stereo & Structure from Motion</a></p>
+</div>
 
 The process of Structure from Motion typically involves the following steps:
 
