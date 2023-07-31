@@ -14,6 +14,8 @@ Alternatively, with a stereo camera, the drone will have two synchronized camera
 
 The implemented 3D reconstruction system will enable the drone to create accurate 3D models of the surroundings in real-time. This capability will facilitate obstacle detection and avoidance, optimize path planning, and enhance overall situational awareness during drone missions.
 
+Special thanks to Prof. Shree Nayar for his awesome explanations on Stereo Vision!
+
 ## Datasets
 
 1. KITTI Dataset
