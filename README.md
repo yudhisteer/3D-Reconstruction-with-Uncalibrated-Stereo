@@ -912,25 +912,70 @@ and **t** =
 ```
 
 #### 8.1.6 Triangulation
+We will now use triangulation and get the 3D point cloud using the ```triangulatePoints``` function from OpenCV. The steps are as follows: 
 
+1. Convert 2D points to homogeneous coordinates
+2. Normalize 2D points using the camera intrinsic matrix (K)
+3. Convert back to inhomogeneous coordinates
+4. Triangulate 3D points using OpenCV's triangulatePoints function
+5. Convert 4D homogeneous points to inhomogeneous 3D points
 
+```python
+    ### --------------- TRIANGULATION ----------------------- ###
 
+    points_3d = triangulate_points(img1pts, img2pts, K, R, t)
+```
 
 #### 8.1.7 Project to 3D
+Since now we have the 3D points, we can also extract the colors from the image and then save the point cloud in a ```.ply``` format with the respective color.
 
+```python
+    ### --------------- IMAGE COLOR EXTRACTION ----------------------- ###
 
+    # Extract color from img1_rgb
+    colors_img1 = []
+    for pt in img1pts:
+        x, y = np.round(pt).astype(int)
+        color = img1_rgb[y, x]
+        colors_img1.append(color)
 
+    colors_img1 = np.array(colors_img1)
 
-https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/27a5602e-8cb0-4099-a4a3-7ec06c217a72
+    # Extract color from img2_rgb
+    colors_img2 = []
+    for pt in img2pts:
+        x, y = np.round(pt).astype(int)
+        color = img2_rgb[y, x]
+        colors_img2.append(color)
+
+    colors_img2 = np.array(colors_img2)
+
+    # Define the file name for the PLY file
+    output_file_path = os.path.join(output_folder, f"out_color{index}.ply")
+
+    # Write the points and colors to the PLY file
+    write_ply(output_file_path, points_3d, colors_img1)
+    print("Point cloud with color saved to:", output_file_path)
+```
+
+From this sparse point cloud, we see that we successfully extracted the color and shape of the golden fish in the middle and the golden plate at the top. We have an outline of the fountain. Notice that we have less noise compared to MVS however, we also have a less dense point cloud.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/daa56216-4a19-40e9-90d5-7365dd92463b" alt="Image 1" style="height: 300px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/3b3082fb-f410-4712-ba41-77d679582472" alt="Image 2" style="height: 300px;"></td>
+  </tr>
+</table>
 
 
 
 ### 8.2 Multi-View Structure from Motion
+Now we will see how to construct a 3D point cloud with all 11 images. As in MVS, we will make use of the topologies to calculate the fundamental matrix. We will use the ```overlapping``` one
+and we will get ```10``` separate point cloud. We will need to ```vstack``` them in order to get a combined 3D reconstructed model. Below is the result of the separate 3D models:
 
+https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/8e4310d8-ad82-4ac3-8520-5e409c1aa5aa
 
-
-
-
+Notice that from the first model, we get a good outline of the fountain and then when we superimpose the other point clouds, they also have a good outline however they are not correctly aligned. It seems that all of them have a different center, hence a different orientation and position.
 
 
 -------------------
