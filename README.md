@@ -775,10 +775,17 @@ The process of Structure from Motion typically involves the following steps:
 
 The result of the Structure from Motion process is a **sparse** 3D point cloud representation of the scene and the camera poses for each image frame.
 
-![ezgif com-video-to-gif](https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/daa56216-4a19-40e9-90d5-7365dd92463b)
 
 
-### 8.1 Feature Marching
+### 8.1 Two-View Structure from Motion
+Similarly to MVS, let's start simple with two images and reconstruct a 3D model. We will use the [Fountain Dataset](http://certis.enpc.fr/demos/stereo/Data/Fountain11/index.html) which consists of ```11``` images.
+
+<p align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/daa56216-4a19-40e9-90d5-7365dd92463b" alt="GIF" style="height: 300px;">
+</p>
+
+#### 8.1 Feature Matching
+We will now use the **SIFT** algorithm in order to find the matching features on two images. We will also need the x-y coordinates of these matching features.
 
 ```python
     ### --------------- FEATURE MATCHING ----------------------- ###
@@ -789,10 +796,38 @@ The result of the Structure from Motion process is a **sparse** 3D point cloud r
     # Obtain the image coordinates (x, y) of the matched keypoints in both images
     img1pts, img2pts = get_matched_keypoints_coordinates(keypoints1, keypoints2)
 ```
+Note that if the two images are quite different or have a significantly different orientation then it will be hard to find matching features. For example, in the image below we only have ```46``` matching features.
 
-<img width="1013" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0a702090-7a98-44ba-bb78-0fa2a46cddba">
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/bb8ed3dc-a620-4092-bbd4-3c8c97ef9094" width="700" height="300"/>
+</div>
 
-<img width="1023" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/bb8ed3dc-a620-4092-bbd4-3c8c97ef9094">
+If we take two pictures with minimal orientation change, then we have the possibility of having more features matching. Here we have ```1577``` features from both images.
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/0a702090-7a98-44ba-bb78-0fa2a46cddba" width="700" height="300"/>
+</div>
+
+#### 8.2 Fundamental Matrix
+
+
+
+
+#### 8.3 Epipolar Lines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
