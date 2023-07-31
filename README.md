@@ -813,13 +813,8 @@ We will now use the ```findFundamentalMat``` function from OpenCV to find the Fu
 
 ```python
     ### --------------- FUNDAMENTAL MATRIX ----------------------- ###
-    F, mask = find_fundamental_matrix(img1pts, img2pts)
-```
 
-```python
-[[-3.61303143e-08  7.46545960e-07 -1.81463985e-03]
- [ 1.22535945e-07 -1.68257713e-07  1.97311328e-02]
- [ 7.27410294e-04 -2.12164946e-02  1.00000000e+00]]
+    F, mask = find_fundamental_matrix(img1pts, img2pts)
 ```
 
 #### 8.1.3 Epipolar Lines
