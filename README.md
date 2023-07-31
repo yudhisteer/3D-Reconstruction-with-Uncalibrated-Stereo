@@ -1,8 +1,18 @@
 # 3D-Reconstruction with Uncalibrated Stereo
 
 ## Problem Statement
+As a drone delivery company, we face challenges in efficiently navigating urban environments with complex structures and obstacles. Traditional 2D mapping techniques may not provide sufficient situational awareness, hindering safe and precise delivery operations. To address this, we need a robust 3D reconstruction solution that can accurately model the 3D environment, enabling our drones to plan optimal flight paths, detect obstacles, and ensure reliable and timely deliveries in densely populated areas. This technology should enhance our drone's perception capabilities, allowing for better collision avoidance and navigation in dynamic and ever-changing urban landscapes.
 
 ## Abstract
+In our study, we evaluated the accuracy and efficiency of Multi-View Stereo (MVS) and Structure-from-Motion (SFM) technologies for 3D reconstruction. We utilized publicly available online datasets to assess the performance of these methods in generating detailed 3D models. The results highlighted MVS's proficiency in producing dense and intricate reconstructions. Meanwhile, SFM demonstrated greater efficiency in scenarios where a wide range of viewpoints was involved.
+
+To implement 3D reconstruction on the drone, we will integrate a camera or a stereo camera under the drone. The camera(s) will capture multiple images of the environment from different viewpoints as the drone flies. These images will then be processed using Structure-from-Motion (SFM) or Multi-View Stereo (MVS) algorithms.
+
+In the SFM approach, the drone will capture a series of 2D images while moving through the area of interest. Our algorithm will analyze the images to estimate the camera poses and triangulate the 3D points in the scene. These 3D points will be combined to create a detailed 3D reconstruction of the environment. 
+
+Alternatively, with a stereo camera, the drone will have two synchronized cameras placed side by side to capture stereoscopic image pairs. The depth information from the stereo images can be used to perform real-time depth mapping and 3D reconstruction of the scene.
+
+The implemented 3D reconstruction system will enable the drone to create accurate 3D models of the surroundings in real-time. This capability will facilitate obstacle detection and avoidance, optimize path planning, and enhance overall situational awareness during drone missions.
 
 ## Datasets
 
