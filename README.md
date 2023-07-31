@@ -821,6 +821,8 @@ We will now use the ```findFundamentalMat``` function from OpenCV to find the Fu
 Using the Fundamental Matrix ```F``` and feature matching coordinates, we will compute the epipolar lines.
 
 ```python
+    ### --------------- EPIPOLAR LINES ----------------------- ###
+
     # Compute epipolar lines for both images
     lines_img1 = compute_epipolar_lines(F, img1pts, 1)
     lines_img2 = compute_epipolar_lines(F, img2pts, 2)
