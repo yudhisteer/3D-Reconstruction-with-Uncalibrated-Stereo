@@ -861,6 +861,14 @@ Below is the result of the epipolar lines when trying different algorithms for t
 #### 8.1.4 Essential Matrix
 Note that we have the intrinsic parameters (given in the dataset) but not the extrinsic ones. Hence, we have our ```K``` matrix - our Camera Matrix  and we will it to estimate the Essential Matrix.
 
+Recall the formula:
+
+<div align="center">
+  <img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/b80f3a1d-7f32-4a9e-b724-274dba74aebb"/>
+</div>
+
+Implementation:
+
 ```python
     ### --------------- ESSENTIAL MATRIX ----------------------- ###
 
