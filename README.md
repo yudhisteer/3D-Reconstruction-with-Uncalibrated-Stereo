@@ -408,7 +408,7 @@ Once we have the corresponding pairs in the left and right images, we can use th
 At this stage, we have established correspondences between points in the left and right images. Now, our objective is to utilize the image coordinates of these corresponding pairs to estimate the three-dimensional coordinates of each point in the scene. This process, known as **triangulation**, allows us to compute the **spatial positions** accurately.
 
 
-Below are the equations for point ```P``` in the 3D coordinate frame of the left and right camera being projected onto the image perspective projection using the internal parameters onto the image plane. Note that the 3x4 matrices are the intrinsic matrices.
+Below are the equations for point ```P``` in the 3D coordinate frame of the left and right camera being projected onto the image perspective projection using the internal parameters onto the image plane. Note that the 3x4 matrices are intrinsic matrices.
 
 Left Camera Imaging Equation:
 <div align="center">
