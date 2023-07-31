@@ -885,14 +885,21 @@ Implementation:
 
 
 
+#### 8.1.6 Triangulation
 
 
 
 
+#### 8.1.7 Project to 3D
 
 
 
 
+https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/27a5602e-8cb0-4099-a4a3-7ec06c217a72
+
+
+
+### 8.2 Multi-View Structure from Motion
 
 
 
