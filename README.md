@@ -809,7 +809,7 @@ If we take two pictures with minimal orientation change, then we have the possib
 </div>
 
 #### 8.1.2 Fundamental Matrix
-We will now use the ```findFundamentalMat``` function from OpenCV to find the Fundamental Matrix, ```F```. The function also returns the mask, which indicates the inliers used to estimate ```F```. We will use the **RANSAC** algorithm to calculate  ```F```.
+We will now use the ```findFundamentalMat``` function from OpenCV to find the Fundamental Matrix, ```F```. The function also returns the mask, which indicates the inliers used to estimate ```F```. We will try different algorithms to calculate F: **FM_LMEDS**, **FM_8POINT**, **FM_RANSAC** and **FM_7POINT**.
 
 ```python
     ### --------------- FUNDAMENTAL MATRIX ----------------------- ###
@@ -823,16 +823,42 @@ We will now use the ```findFundamentalMat``` function from OpenCV to find the Fu
 ```
 
 #### 8.1.3 Epipolar Lines
+Using the Fundamental Matrix ```F``` and feature matching coordinates, we will compute the epipolar lines.
 
+```python
+    # Compute epipolar lines for both images
+    lines_img1 = compute_epipolar_lines(F, img1pts, 1)
+    lines_img2 = compute_epipolar_lines(F, img2pts, 2)
+```
 
+We will then plot these lines on our images:
 
+```python
+    # # Draw epipolar lines on both images
+    img1_copy_1, img2_copy_2 = draw_epipolar_lines(img2_rgb, img1_rgb, lines_img2, img2pts, img1pts, draw_only=10)
+    img1_copy_3, img2_copy_4 = draw_epipolar_lines(img1_rgb, img2_rgb, lines_img1, img1pts, img2pts, draw_only=10)
+```
 
+Below is the result of the epipolar lines when trying different algorithms for the Fundamental Matrix:
 
-
-
-
-
-
+<table>
+  <tr>
+    <th>FM_7POINT</th>
+    <th>FM_8POINT</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/81c2ec47-878f-4e3c-8e28-defa0a4dca88" alt="Image 1" style="height: 200px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/17921aef-0b3c-4541-9a51-c8f3a7a91048" alt="Image 2" style="height: 200px;"></td>
+  </tr>
+  <tr>
+    <th>FM_LMEDS</th>
+    <th>FM_RANSAC</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/ec05ce80-ee25-4269-98c0-dd8d482ace04" alt="Image 3" style="height: 200px;"></td>
+    <td><img src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/184161bd-8a4a-4d36-b6e6-e75d4bed61a0" alt="Image 4" style="height: 200px;"></td>
+  </tr>
+</table>
 
 
 
