@@ -1048,7 +1048,7 @@ As Bundle Adjustment is a complex and tedious process, I will instead use ICP to
 We successfully aligned both point clouds!
 
 ## Conclusion
-In this project, we saw the 3D reconstruction of a Rock, Temple, and Fountain using various photogrammetry techniques. We observed that with Multi-View Stereo (MVS) rpovides a denser and more detailed 3D reconstruction, making it preferable for scenes with textureless or repetitive regions. On the other hand, Structure-from-Motion (SFM) is faster and more computationally efficient, making it suitable for real-time applications and smaller scenes. 
+In this project, we saw the 3D reconstruction of a Rock, Temple, and Fountain using various photogrammetry techniques. We observed that with Multi-View Stereo (MVS), a denser and more detailed 3D reconstruction is obtained, making it preferable for scenes with textureless or repetitive regions. On the other hand, Structure-from-Motion (SFM) is faster and more computationally efficient, making it suitable for real-time applications and smaller scenes. 
 
 <p align="center">
   <img width="600" height="350" alt="image" src="https://github.com/yudhisteer/3D-Reconstruction-with-Uncalibrated-Stereo/assets/59663734/890a40a3-e73f-4314-891e-5ba698a38b6e">
